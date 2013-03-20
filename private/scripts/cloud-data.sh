@@ -1,9 +1,14 @@
 #!/bin/sh
+set -e -x
+
 role=init
 puppet_source=https://code.google.com/p/demo-puppet-repo/
 
 
-set -e -x
+if [ -z $role ]; then role=init; fi
+#
+# Get latest puppet version
+#
 wget http://apt.puppetlabs.com/puppetlabs-release-precise.deb
 dpkg -i puppetlabs-release-precise.deb
 apt-get --yes --quiet update
