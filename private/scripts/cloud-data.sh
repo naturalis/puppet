@@ -1,11 +1,14 @@
 #!/bin/sh
 set -e -x
 
-role=init
+role=$1
 puppet_source=https://code.google.com/p/demo-puppet-repo/
 
-
+#
+# Default role to init
+#
 if [ -z $role ]; then role=init; fi
+
 #
 # Get latest puppet version
 #
