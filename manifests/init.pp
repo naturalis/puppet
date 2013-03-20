@@ -1,2 +1,2 @@
-class { lockdown: }
+# class { lockdown: }
 class { motd: }
