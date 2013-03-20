@@ -1,2 +1,2 @@
-class { nginx: }
+class { 'nginx': }
 include lockdown

@@ -1,2 +1,2 @@
-class { lockdown: }
-class { motd: }
+class { 'lockdown': }
+class { 'motd': }

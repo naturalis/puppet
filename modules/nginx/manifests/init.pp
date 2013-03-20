@@ -5,7 +5,7 @@ class nginx {
 
     file { '/etc/nginx/conf.d/realip.conf':
         ensure  => file,
-        content => template("nginx/realip.conf"),
+        content => template('nginx/realip.conf'),
         require => Package['nginx'],
         notify  => Service['nginx'],
     }
