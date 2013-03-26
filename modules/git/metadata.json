@@ -1,29 +1,26 @@
 {
-  "dependencies": [
-
-  ],
-  "summary": "A git module",
-  "source": "https://github.com/nesi/puppet-git",
-  "description": "A module for managing git repositories and users with Puppet",
-  "project_page": "https://github.com/nesi/puppet-git",
+  "license": "Apache 2.0",
+  "description": "module for installing git",
   "checksums": {
-    "spec/spec_helper.rb": "ca19ec4f451ebc7fdb035b52eae6e909",
-    "Modulefile": "10385ea593c0e1e4d851adced99151da",
-    "manifests/install.pp": "63b6ca8a9f7de1ffa905c2613bcde488",
-    "manifests/init.pp": "df508b5d6d1bd9d58f92c736fce8d8f7",
-    "manifests/user.pp": "57432fa4ffffb08656eb13643af92a8d",
-    "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
-    "manifests/repo.pp": "aebfdd488131b8f36074d9cb2e0c4d5c",
-    "README.markdown": "352b3bcf0da4dd373f4800e410563051",
-    "gpl.txt": "97ff9683aa36f333c7d2295d6520090f",
-    "tests/init.pp": "bcee788a7d204e07e265aeafce4dc88f",
-    "manifests/params.pp": "176c8a1277acd0826a897963a193c968"
+    "CHANGELOG": "f2e3e57948da2dcab3bdbe782efd6b11",
+    "manifests/gitosis.pp": "6b1bbd3a43baa63c63f5d03dcb9fbe95",
+    "LICENSE": "0e5ccf641e613489e66aa98271dbe798",
+    "README": "f134dd975744e03458b27f4f62dd4aaa",
+    "tests/init.pp": "bbf47fdd0ad67c6fa1d47d39fdd6a94b",
+    "tests/gitosis.pp": "4a9f134fbd08096dac65aafa9fbc0742",
+    "Modulefile": "1d3fef67a3c21c63e72834ebe9efccd1",
+    "manifests/init.pp": "58d5bfafd9a0e77c282c1f5df2966ed9"
   },
-  "author": "Aaron Hicks",
+  "summary": "module for installing git",
   "types": [
 
   ],
-  "name": "nesi-git",
-  "license": "GPL3",
-  "version": "0.0.1"
+  "source": "git://github.com/puppetlabs/puppetlabs-git.git",
+  "project_page": "https://github.com/puppetlabs/puppetlabs-git/",
+  "author": "puppetlabs",
+  "name": "puppetlabs-git",
+  "version": "0.0.2",
+  "dependencies": [
+
+  ]
 }
