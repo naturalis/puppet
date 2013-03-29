@@ -1,5 +1,4 @@
 class { 'git': }
-class { 'lockdown': }
 class { 'motd': }
 
 vcsrepo { '/root/demo-puppet-repo':
