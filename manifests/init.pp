@@ -1,2 +1,2 @@
-include stdlib
 class { 'motd': }
+$roles = hiera('testroles')
