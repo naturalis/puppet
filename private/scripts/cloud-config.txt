@@ -18,9 +18,6 @@ mounts:
  - [ xvdh, /opt/data, "auto", "defaults,nobootwait", "0", "0" ]
  - [ dd, /dev/zero ]
 
-runcmd:
- - [ git, clone, 'https://code.google.com/p/demo-puppet-repo/', /etc/puppet ]
-
 # cloud_config_modules:
 # default:
 # cloud_config_modules:
@@ -85,7 +82,9 @@ timezone: US/Eastern
 # default value:
 # cc_ready_cmd: [ initctl, emit, cloud-config, CLOUD_CFG=/var/lib/instance//cloud-config.txt ]
 # example:
-cc_ready_cmd: [ mv, /etc/puppet, /etc/puppet.org ]
+cc_ready_cmd: 
+ - [ mv, /etc/puppet, /etc/puppet.org ]
+ - [ git, clone, 'https://code.google.com/p/demo-puppet-repo/', /etc/puppet ]
 
 ## configure interaction with ssh server
 # ssh_svcname: ssh
