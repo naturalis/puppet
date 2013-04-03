@@ -1,2 +1,2 @@
 class { 'motd': }
-$roles = hiera('testroles')
+$roles = hiera('testrole')
