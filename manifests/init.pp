@@ -1,2 +1,2 @@
-class { 'stdlib': }
+include stdlib
 class { 'motd': }

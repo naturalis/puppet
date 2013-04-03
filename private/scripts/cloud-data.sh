@@ -23,7 +23,7 @@ git clone $puppet_source /etc/puppet
 #
 # Copy meta data to facts directory
 mkdir -p /etc/facter/facts.d
-cp /meta.js /etc/facter/facts.d/meta.js
+cp /meta.js /etc/facter/facts.d/meta.json
 
 #
 # Run puppet.
