@@ -21,9 +21,8 @@ mv /etc/puppet /etc/puppet.orig
 git clone $puppet_source /etc/puppet
 
 #
-# Copy meta data to facts directory
-mkdir -p /etc/facter/facts.d
-cp /meta.js /etc/facter/facts.d/meta.json
+# Copy meta data to hiera backend directory
+cp /meta.js /var/lib/hiera/meta.json
 
 #
 # Run puppet.
