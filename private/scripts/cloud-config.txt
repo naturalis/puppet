@@ -19,8 +19,8 @@ mounts:
  - [ dd, /dev/zero ]
 
 runcmd:
- - [ mv /etc/puppet /etc/puppet.orig ]
- - [ git clone https://code.google.com/p/demo-puppet-repo/ /etc/puppet ]
+ - [ mv, /etc/puppet, /etc/puppet.orig ]
+ - [ git, clone, 'https://code.google.com/p/demo-puppet-repo/', /etc/puppet ]
 
 # cloud_config_modules:
 # default:
