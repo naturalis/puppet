@@ -30,9 +30,13 @@ else
 fi
 
 #
-# Run puppet.
+# Get role from hiera
 #
 role="`hiera -c /etc/puppet/hiera.yaml role $defaultrole 2>&1`"
-returncode=$?
 echo "Role is: $role"
+
+#
+# Run puppet.
+#
+
 puppet apply --pluginsync /etc/puppet/manifests/$role.pp
