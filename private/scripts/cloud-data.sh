@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e -x
 
-role=init
+defaultrole=init
 puppet_source=https://code.google.com/p/demo-puppet-repo/
 
 
@@ -32,5 +32,7 @@ fi
 #
 # Run puppet.
 #
-
+role="`hiera -c /etc/puppet/hiera.yaml role $defaultrole 2>&1`"
+returncode=$?
+echo "Role is: $role"
 puppet apply --pluginsync /etc/puppet/manifests/$role.pp
