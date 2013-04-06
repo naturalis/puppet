@@ -22,7 +22,12 @@ git clone $puppet_source /etc/puppet
 
 #
 # Copy meta data to hiera backend directory
-cp /meta.js /var/lib/hiera/defaults.json
+if [ -f /meta.js  ];
+then
+   cp /meta.js /var/lib/hiera/defaults.json
+else
+   echo "Meta data does not exist."
+fi
 
 #
 # Run puppet.
