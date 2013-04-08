@@ -1,3 +1,3 @@
 class { 'motd': }
 $role = hiera('role')
-include $role
+class { "$role":  }
