@@ -1,11 +1,11 @@
 ---
 :backends:
-  - json
+  - yaml
 :hierarchy:
-  - defaults
+  - cloud-init
   - %{clientcert}
   - %{environment}
   - global
 
-:json:
+:yaml:
   :datadir: /var/lib/hiera
