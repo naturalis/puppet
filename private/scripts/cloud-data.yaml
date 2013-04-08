@@ -1,6 +1,6 @@
 #cloud-config
 runcmd:
- - [ sh, -xc, "echo 'role: init' > /var/lib/hiera/cloud-init.yaml" ]
+ - [ sh, -xc, "echo 'role: init' > /etc/puppet/hieradata/cloud-init.yaml" ]
  - [ mv, /etc/puppet, /etc/puppet.orig ]
  - [ git, clone, "https://code.google.com/p/demo-puppet-repo/", /etc/puppet ]
  - [ sh, -xc, "puppet apply /etc/puppet/manifests/init.pp" ] 

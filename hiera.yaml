@@ -9,4 +9,4 @@
   - global
 
 :yaml:
-  :datadir: /var/lib/hiera
+  :datadir: /etc/puppet/hieradata
