@@ -39,4 +39,4 @@ echo "Role is: $role"
 # Run puppet.
 #
 
-puppet apply --pluginsync /etc/puppet/manifests/$role.pp
+puppet apply /etc/puppet/manifests/$role.pp
