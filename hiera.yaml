@@ -2,6 +2,7 @@
 :backends:
   - yaml
 :hierarchy:
+  - %{fqdn}
   - cloud-init
   - %{clientcert}
   - %{environment}
