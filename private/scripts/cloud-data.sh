@@ -29,9 +29,13 @@ else
    echo "Meta data does not exist."
 fi
 
+#
+# get role from hiera
+#
+role="`hiera -c /etc/puppet/hiera.yaml role $defaultrole 2>&1`"
 
 #
 # Run puppet.
 #
 
-puppet apply /etc/puppet/manifests/$defaultrole.pp
+puppet apply /etc/puppet/manifests/$role.pp
