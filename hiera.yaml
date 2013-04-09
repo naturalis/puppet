@@ -5,6 +5,7 @@
 :hierarchy:
   - cloud-init
   - %{fqdn}
+  - %{hostname}
   - %{clientcert}
   - %{environment}
   - global
