@@ -1,7 +1,7 @@
 class { 'stdlib': }
 class { 'git': }
 class { 'motd': }
-class { 'demo-puppet-dev': } 
+class { 'demo-puppet-dev': }
 
 class demo-puppet-dev {
 
@@ -22,3 +22,4 @@ class demo-puppet-dev {
     require => Package['puppet-lint'],
   }
 }
+

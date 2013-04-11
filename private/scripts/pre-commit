@@ -18,7 +18,7 @@ do
     # Only check new/modified files
     if [[ -f $file ]]
     then
-        puppet-lint --with-filename $file
+        puppet-lint $file
 
         # Set us up to bail if we receive any syntax errors
         if [[ $? -ne 0 ]]
