@@ -5,3 +5,5 @@ virtualhosts:
     port: 80
     ssl: no
     serveradmin: bestaatniet@naturalis.nl
+
+mysql::config::default_engine: myisam
