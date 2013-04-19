@@ -4,9 +4,9 @@
   - yaml
 :hierarchy:
   - cloud-init
+  - user-data
   - %{fqdn}
   - %{hostname}
-  - %{clientcert}
   - %{environment}
   - global
   - default
