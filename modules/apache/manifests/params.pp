@@ -18,7 +18,6 @@
 # Sample Usage:
 #
 class apache::params {
-
   $ssl           = true
   $template      = 'apache/vhost-default.conf.erb'
   $priority      = '25'
@@ -90,6 +89,6 @@ class apache::params {
     $mod_libs              = {}
     $mod_identifiers       = {}
   } else {
-    fail("Class['apache::params']: Unsupported operatingsystem: $operatingsystem")
+    fail("Class['apache::params']: Unsupported operatingsystem: $::operatingsystem")
   }
 }

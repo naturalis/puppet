@@ -1,0 +1,7 @@
+virtualhosts:
+  apache-default.cloud.naturalis.nl:
+    serveraliases: *.cloud.naturalis.nl
+    docroot: /var/www
+    port: 80
+    ssl: no
+    serveradmin: bestaatniet@naturalis.nl
