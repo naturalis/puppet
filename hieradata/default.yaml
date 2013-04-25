@@ -7,3 +7,14 @@ virtualhosts:
     serveradmin: bestaatniet@naturalis.nl
 
 mysql::config::default_engine: myisam
+
+monophylizer:
+  monophylizer.cloud.naturalis.nl:
+    serveraliases: *.cloud.naturalis.nl
+    docroot: /var/www/monophylizer
+    port: 80
+    ssl: no
+    serveradmin: bestaatniet@naturalis.nl
+
+monophylizer::config::repo: https://github.com/ncbnaturalis/monophylizer.git
+
