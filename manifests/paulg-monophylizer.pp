@@ -10,9 +10,11 @@ create_resources('apache::vhost', hiera('monophylizer', []))
     source   => 'https://github.com/ncbnaturalis/monophylizer.git',
   }
 
+
   file { '/var/monophylizer/script/monophylizer.pl':
     ensure  => 'file',
     mode    => '755',
+    require => Vcsrepo['/var/monophylizer'],
   }
 
   file { '/usr/lib/cgi-bin/monophylizer.pl':
