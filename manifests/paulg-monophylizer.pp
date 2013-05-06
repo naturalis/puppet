@@ -3,9 +3,21 @@
     before  => Vcsrepo['/var/monophylizer'],
   }
 
-# Create all virtual hosts from hiera
-create_resources('apache::vhost', hiera('monophylizer', []))
+  class { 'monophylizer::instances':
+    before  => Vcsrepo['/var/monophylizer'],
+  }
 
+  class { 'monophylizer': }
+
+
+# Create all virtual hosts from hiera
+class monophylizer::instances
+{
+  create_resources('apache::vhost', hiera('monophylizer', []))
+}
+
+class monophylizer
+{
   vcsrepo { '/var/monophylizer':
     ensure   => latest,
     provider => git,
@@ -44,4 +56,4 @@ create_resources('apache::vhost', hiera('monophylizer', []))
     target  => '/var/monophylizer/script/sorttable.js',
     require => Vcsrepo['/var/monophylizer'],
   }
-
+}
