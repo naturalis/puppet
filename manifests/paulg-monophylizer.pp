@@ -1,5 +1,7 @@
 # Create apache server
-class { 'apache': }
+  class { 'apache':
+    before  => Vcsrepo['/var/monophylizer'],
+  }
 
 # Create all virtual hosts from hiera
 create_resources('apache::vhost', hiera('monophylizer', []))
