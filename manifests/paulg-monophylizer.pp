@@ -14,34 +14,34 @@ create_resources('apache::vhost', hiera('monophylizer', []))
 
   file { '/var/monophylizer/script/monophylizer.pl':
     ensure  => 'file',
-    mode    => '755',
+    mode    => '0755',
     require => Vcsrepo['/var/monophylizer'],
   }
 
   file { '/var/www/monophylizer/cgi-bin':
-    ensure => 'directory',
-    mode   => '755',
+    ensure  => 'directory',
+    mode    => '0755',
     require => Vcsrepo['/var/monophylizer'],
   }
 
   file { '/var/www/monophylizer/cgi-bin/monophylizer.pl':
-    ensure => 'link',
-    mode   => '777',
-    target => '/var/monophylizer/script/monophylizer.pl',
+    ensure  => 'link',
+    mode    => '0777',
+    target  => '/var/monophylizer/script/monophylizer.pl',
     require => File['/var/www/monophylizer/cgi-bin'],
   }
 
   file { '/var/www/monophylizer/monophylizer.html':
-    ensure => 'link',
-    mode   => '644',
-    target => '/var/monophylizer/html/monophylizer.html',
+    ensure  => 'link',
+    mode    => '0644',
+    target  => '/var/monophylizer/html/monophylizer.html',
     require => Vcsrepo['/var/monophylizer'],
   }
 
   file { '/var/www/monophylizer/sorttable.js':
-    ensure => 'link',
-    mode   => '644',
-    target => '/var/monophylizer/script/sorttable.js',
+    ensure  => 'link',
+    mode    => '0644',
+    target  => '/var/monophylizer/script/sorttable.js',
     require => Vcsrepo['/var/monophylizer'],
   }
 
