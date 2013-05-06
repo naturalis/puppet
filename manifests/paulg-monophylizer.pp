@@ -1,12 +1,12 @@
 # Create apache server
   class { 'apache':
-    before  => Vcsrepo['/var/monophylizer'],
+    before  => Class['monophylizer'],
   }
 
   class { 'monophylizer::instances':
-    before  => Vcsrepo['/var/monophylizer'],
+    before  => Class['monophylizer'],
   }
-
+  class { 'cpanm': }
   class { 'monophylizer': }
 
 
@@ -18,6 +18,8 @@ class monophylizer::instances
 
 class monophylizer
 {
+  package { 'Bio::Phylo': ensure => present, provider => 'cpanm' }
+
   vcsrepo { '/var/monophylizer':
     ensure   => latest,
     provider => git,
