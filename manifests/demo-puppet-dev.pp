@@ -16,6 +16,10 @@ class demo-puppet-dev {
     require => Vcsrepo['/root/demo-puppet-repo'],
   }
 
+  package { 'graphviz':
+    ensure  => installed,
+  }
+
   exec {'install-pre-commit-hook':
     command => '/bin/cp /root/demo-puppet-repo/private/scripts/pre-commit /root/demo-puppet-repo/.git/hooks/pre-commit',
     creates => '/root/demo-puppet-repo/.git/hooks/pre-commit',
