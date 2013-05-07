@@ -1,13 +1,5 @@
-# Create apache server
-  class { 'apache':
-    before  => Class['monophylizer'],
-  }
-
-  class { 'monophylizer::instances':
-    before  => Class['monophylizer'],
-  }
-  class { 'cpanm': }
-  class { 'monophylizer': }
+  
+class { 'monophylizer': }
 
 
 # Create all virtual hosts from hiera
@@ -18,7 +10,17 @@ class monophylizer::instances
 
 class monophylizer
 {
-  package { 'Bio::Phylo': ensure => present, provider => 'cpanm' }
+  perl::module { 'Bio::Phylo': }
+  class { 'perl': }
+
+# Create apache server
+  class { 'apache':
+    before  => Class['monophylizer'],
+  }
+
+  class { 'monophylizer::instances':
+    before  => Class['monophylizer'],
+  }
 
   vcsrepo { '/var/monophylizer':
     ensure   => latest,
