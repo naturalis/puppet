@@ -10,22 +10,30 @@ class monophylizer::instances
 
 class monophylizer
 {
-  perl::module { 'Bio::Phylo': }
   class { 'perl': }
-
-# Create apache server
-  class { 'apache':
-    before  => Class['monophylizer'],
-  }
+  perl::module { 'Bio::Phylo': }
+  class { 'apache': }
+  class { 'apache::mod::cgi': }
 
   class { 'monophylizer::instances':
-    before  => Class['monophylizer'],
+    require => File['/var/www', '/var/log/apache2'],
   }
 
   vcsrepo { '/var/monophylizer':
     ensure   => latest,
     provider => git,
     source   => 'https://github.com/ncbnaturalis/monophylizer.git',
+    require => Class['monophylizer::instances'],
+  }
+
+  file { '/var/www':
+    ensure  => 'directory',
+    mode    => '0755',
+  }
+
+  file { '/var/log/apache2':
+    ensure  => 'directory',
+    mode    => '0755',
   }
 
   file { '/var/monophylizer/script/monophylizer.pl':
@@ -40,7 +48,7 @@ class monophylizer
     require => Vcsrepo['/var/monophylizer'],
   }
 
-  file { '/usr/lib/cgi-bin/monophylizer.pl':
+  file { '/var/www/monophylizer/cgi-bin/monophylizer.pl':
     ensure  => 'link',
     mode    => '0777',
     target  => '/var/monophylizer/script/monophylizer.pl',
