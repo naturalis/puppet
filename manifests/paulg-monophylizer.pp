@@ -42,17 +42,11 @@ class monophylizer
     require => Vcsrepo['/var/monophylizer'],
   }
 
-  file { '/var/www/monophylizer/cgi-bin':
-    ensure  => 'directory',
-    mode    => '0755',
-    require => Vcsrepo['/var/monophylizer'],
-  }
-
-  file { '/var/www/monophylizer/cgi-bin/monophylizer.pl':
+  file { '/usr/lib/cgi-bin/monophylizer.pl':
     ensure  => 'link',
     mode    => '0777',
     target  => '/var/monophylizer/script/monophylizer.pl',
-    require => File['/var/www/monophylizer/cgi-bin'],
+    require => Vcsrepo['/var/monophylizer'],
   }
 
   file { '/var/www/monophylizer/monophylizer.html':

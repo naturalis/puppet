@@ -15,7 +15,7 @@ monophylizer:
     port: 80
     ssl: no
     serveradmin: bestaatniet@naturalis.nl
-    options: +ExecCGI +FollowSymLinks
+    options: +FollowSymLinks +ExecCGI
 
 monophylizer::config::repo: https://github.com/ncbnaturalis/monophylizer.git
 
