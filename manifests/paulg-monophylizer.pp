@@ -12,6 +12,7 @@ class monophylizer
 {
   class { 'perl': }
   perl::module { 'Bio::Phylo': }
+  include concat::setup
   class { 'apache': }
   class { 'apache::mod::cgi': }
 
