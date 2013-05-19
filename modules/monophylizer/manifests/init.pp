@@ -36,8 +36,18 @@
 # Copyright 2013 Your name here, unless otherwise noted.
 #
 class monophylizer {
-  class { 'perl': }
-  perl::module { 'Bio::Phylo': }
+  package { 'perl-doc':
+    ensure => present,
+  }
+
+  class { 'perl':
+    require  => Package['perl-doc'],
+  }
+
+  perl::module { 'Bio::Phylo':
+    require  => Package['perl-doc'],
+  }
+
   class { 'concat::setup': }
   class { 'apache': }
   class { 'apache::mod::cgi': }

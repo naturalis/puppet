@@ -24,7 +24,7 @@ class apache (
   $default_ssl_crl      = undef,
   $service_enable       = true,
   $purge_configs        = true,
-  $purge_vdir           = true,
+  $purge_vdir           = false,
   $serveradmin          = 'root@localhost',
   $sendfile             = false,
   $error_documents      = false,
@@ -136,7 +136,7 @@ class apache (
     case $::osfamily {
       'debian': {
         $docroot              = '/var/www'
-        $pidfile              = '${APACHE_PID_FILE}'
+        $pidfile              = "${APACHE_PID_FILE}"
         $error_log            = 'error.log'
         $error_documents_path = '/usr/share/apache2/error'
         $scriptalias          = '/usr/lib/cgi-bin'
