@@ -13,6 +13,10 @@ dpkg -i puppetlabs-release-precise.deb
 apt-get --yes --quiet update
 apt-get --yes -o Dpkg::Options::="--force-confold" --quiet install git puppet-common
 
+# centos:
+# rpm -Uhv http://yum.puppetlabs.com/el/6/products/x86_64/puppetlabs-release-6-7.noarch.rpm
+#  yum -y install puppet
+
 #
 # Fetch puppet configuration from public git repository.
 #
