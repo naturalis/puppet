@@ -1,10 +1,11 @@
 # == Class: puppetdev
 #
-# Full description of class puppetdev here.
+# Install puppet development tools.
+# Clone git repo
 #
 # === Parameters
 #
-# Document parameters here.
+# repo (todo).
 #
 # [*sample_parameter*]
 #   Explanation of what this parameter affects and what it defaults to.
@@ -24,7 +25,7 @@
 # === Examples
 #
 #  class { puppetdev:
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ]
+#    repos => [ 'https://code.google.com/p/demo-puppet-repo', 'https://code.google.com/p/openstack-poc' ]
 #  }
 #
 # === Authors
