@@ -15,7 +15,7 @@ apt-get --yes -o Dpkg::Options::="--force-confold" --quiet install git puppet-co
 
 # centos:
 # rpm -Uhv http://yum.puppetlabs.com/el/6/products/x86_64/puppetlabs-release-6-7.noarch.rpm
-#  yum -y install puppet
+#  yum -y install puppet git
 
 #
 # Fetch puppet configuration from public git repository.

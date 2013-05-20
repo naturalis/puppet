@@ -12,8 +12,9 @@ class demo-puppet-dev {
   }
 
   package { 'puppet-lint':
-    ensure  => installed,
-    require => Vcsrepo['/root/demo-puppet-repo'],
+    ensure   => installed,
+    require  => Vcsrepo['/root/demo-puppet-repo'],
+    provider => 'gem',
   }
 
   package { 'graphviz':
