@@ -36,7 +36,7 @@
 # Copyright 2013 Your name here, unless otherwise noted.
 #
 class puppetdev {
-vcsrepo { '/root/demo-puppet-repo':
+  vcsrepo { '/root/demo-puppet-repo':
     ensure   => present,
     provider => git,
     source   => 'https://code.google.com/p/demo-puppet-repo',
