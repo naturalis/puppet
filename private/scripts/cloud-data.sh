@@ -2,20 +2,28 @@
 set -e -x
 
 defaultrole=init
-puppet_source=https://code.google.com/p/demo-puppet-repo/
+puppet_source=https://code.google.com/p/demo-puppet-repo
 
 
 #
 # Get latest puppet version
-#
-wget http://apt.puppetlabs.com/puppetlabs-release-precise.deb
-dpkg -i puppetlabs-release-precise.deb
-apt-get --yes --quiet update
-apt-get --yes -o Dpkg::Options::="--force-confold" --quiet install git puppet-common
+# Debian like
+if [ -f /usr/bin/dpkg ]
+then
+ # wget http://apt.puppetlabs.com/puppetlabs-release-precise.deb
+ # dpkg -i puppetlabs-release-precise.deb
+  wget http://apt.puppetlabs.com/puppetlabs-release-stable.deb
+  dpkg -i puppetlabs-release-stable.deb
+  apt-get --yes --quiet update
+  apt-get --yes -o Dpkg::Options::="--force-confold" --quiet install git puppet-common
+fi
 
-# centos:
-# rpm -Uhv http://yum.puppetlabs.com/el/6/products/x86_64/puppetlabs-release-6-7.noarch.rpm
-#  yum -y install puppet git
+# centos
+if [ -f /bin/rpm ]
+then
+  rpm -Uhv http://yum.puppetlabs.com/el/6/products/x86_64/puppetlabs-release-6-7.noarch.rpm
+  yum -y install puppet git
+fi
 
 #
 # Fetch puppet configuration from public git repository.
