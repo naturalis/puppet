@@ -50,7 +50,7 @@ class monophylizer {
 
   class { 'concat::setup': }
   class { 'apache': }
-  class { 'apache::mod::cgi': }
+#  class { 'apache::mod::cgi': }
 
   class { 'monophylizer::instances':
     require => File['/var/www', '/var/log/apache2'],
