@@ -11,9 +11,14 @@ class demo-puppet-dev {
     source   => 'https://code.google.com/p/demo-puppet-repo/',
   }
 
-  package { 'puppet-lint':
+  package { 'rubygems':
     ensure   => installed,
     require  => Vcsrepo['/root/demo-puppet-repo'],
+  }
+
+  package { 'puppet-lint':
+    ensure   => installed,
+    require  => Package['rubygems'],
     provider => 'gem',
   }
 
