@@ -8,12 +8,16 @@ class perl::cpanminus inherits perl {
     ensure => installed,
   }
 
+  package{ 'make':
+    ensure => installed,
+  }
+
   exec{ 'install_cpanminus':
     path    => ['/usr/bin/','/bin'],
     command => 'curl -L http://cpanmin.us | perl - App::cpanminus',
     unless  => 'perldoc -l App::cpanminus',
     timeout => 600,
-    require => Package['curl'],
+    require => Package['curl', 'make'],
   }
 
 }
