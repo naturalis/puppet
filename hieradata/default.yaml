@@ -1,7 +1,7 @@
-virtualhosts:
-  apache-default.cloud.naturalis.nl:
+dierendeterminatie:
+  dierendeterminatie.cloud.naturalis.nl:
     serveraliases: *.cloud.naturalis.nl
-    docroot: /var/www
+    docroot: /var/www/dierendeterminatie
     port: 80
     ssl: no
     serveradmin: bestaatniet@naturalis.nl
