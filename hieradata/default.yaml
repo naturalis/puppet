@@ -5,7 +5,9 @@ dierendeterminatie:
     port: 80
     ssl: no
     serveradmin: bestaatniet@naturalis.nl
-
+dierendeterminatie::backmeup: true
+dierendeterminatie::backuphour: 2
+dierendeterminatie::backupminute: 2
 mysql::config::default_engine: myisam
 
 monophylizer:

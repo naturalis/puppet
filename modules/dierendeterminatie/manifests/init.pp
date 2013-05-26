@@ -36,7 +36,9 @@
 # Copyright 2013 Your name here, unless otherwise noted.
 #
 class dierendeterminatie (
-  $backmeup = false,
+  $backmeup = true,
+  $backuphour = 1,
+  $backupminute = 1,
   $packages = 'httpd',
 ) {
 
@@ -62,14 +64,10 @@ class dierendeterminatie (
     mode    => '0755',
   }
 
-
-# Crontab example
-cron { 'puppet':
-  ensure  => present,
-  command => '/usr/bin/puppet apply --logdest syslog /etc/puppet/manifests/lamp.pp > /dev/null 2>&1',
-  user    => 'root',
-  minute  => 30,
-}
-
-  if $backmeup == true { include mysql::backmeup }
+  if $backmeup == true {
+    class { 'dierendeterminatie::backmeup':
+      backuphour   => $backuphour,
+      backupminute => $backupminute,
+    }
+  }
 }

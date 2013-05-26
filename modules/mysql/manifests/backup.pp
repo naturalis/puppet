@@ -7,6 +7,8 @@
 #   [*backuppassword*] - The password of the mysql backup user.
 #   [*backupdir*]      - The target directory of the mysqldump.
 #   [*backupcompress*] - Boolean to compress backup with bzip2.
+#   [*backuphour*]     - Hour to backup
+#   [*backupminute*]   - Minute to backup
 #
 # Actions:
 #   GRANT SELECT, RELOAD, LOCK TABLES ON *.* TO 'user'@'localhost'
@@ -28,6 +30,8 @@ class mysql::backup (
   $backuppassword,
   $backupdir,
   $backupcompress = true,
+  $backuphour = 4,
+  $backupminute = 5,
   $ensure = 'present'
 ) {
 
@@ -47,8 +51,8 @@ class mysql::backup (
     ensure  => $ensure,
     command => '/usr/local/sbin/mysqlbackup.sh',
     user    => 'root',
-    hour    => 23,
-    minute  => 5,
+    hour    => $backuphour,
+    minute  => $backupminute,
     require => File['mysqlbackup.sh'],
   }
 
