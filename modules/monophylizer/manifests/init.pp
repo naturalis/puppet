@@ -48,12 +48,14 @@ class monophylizer {
     require  => Package['perl-doc'],
   }
 
-  class { 'concat::setup': }
-  class { 'apache': }
+#  class { 'concat::setup': }
+  include concat::setup
+  include apache
+#  class { 'apache': }
 #  class { 'apache::mod::cgi': }
 
   class { 'monophylizer::instances':
-    require => File['/var/www', '/var/log/apache2'],
+#    require => File['monophylizer_htmlroot', 'monophylizer_logdir'],
   }
 
   vcsrepo { '/var/monophylizer':
@@ -63,15 +65,17 @@ class monophylizer {
     require  => Class['monophylizer::instances'],
   }
 
-  file { '/var/www':
-    ensure  => 'directory',
-    mode    => '0755',
-  }
+#  file { 'monophylizer_htmlroot':
+#    ensure  => 'directory',
+#    mode    => '0755',
+#    path    => '/var/www',
+#  }
 
-  file { '/var/log/apache2':
-    ensure  => 'directory',
-    mode    => '0755',
-  }
+#  file { 'monophylizer_logdir':
+#    ensure  => 'directory',
+#    mode    => '0755',
+#    path    => '/var/log/apache2',
+#  }
 
   file { '/var/monophylizer/script/monophylizer.pl':
     ensure  => 'file',
