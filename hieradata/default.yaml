@@ -1,6 +1,6 @@
 dierendeterminatie:
   dierendeterminatie.cloud.naturalis.nl:
-    serveraliases: *.cloud.naturalis.nl
+    serveraliases: '*.cloud.naturalis.nl'
     docroot: /var/www/dierendeterminatie
     port: 80
     ssl: no
@@ -12,7 +12,7 @@ mysql::config::default_engine: myisam
 
 monophylizer:
   monophylizer.cloud.naturalis.nl:
-    serveraliases: *.cloud.naturalis.nl
+    serveraliases: '*.cloud.naturalis.nl'
     docroot: /var/www/monophylizer
     port: 80
     ssl: no
