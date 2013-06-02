@@ -5,9 +5,6 @@
 :hierarchy:
   - cloud-init
   - user-data
-  - %{fqdn}
-  - %{hostname}
-  - %{environment}
   - global
   - default
 
