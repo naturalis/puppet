@@ -15,7 +15,6 @@
 # == Usage:
 # include puppi::mcollective::client
 #
-# :include:../README.mcollective
 #
 class puppi::mcollective::client {
 

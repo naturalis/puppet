@@ -1,31 +1,14 @@
 # == Class: monophylizer
 #
-# Full description of class monophylizer here.
+# This class installs the monophylizer webtool, for more information https://github.com/ncbnaturalis/monophylizer
 #
 # === Parameters
 #
-# Document parameters here.
-#
-# [*sample_parameter*]
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
-#
 # === Variables
-#
-# Here you should define a list of variables that this module would require.
-#
-# [*sample_variable*]
-#   Explanation of how this variable affects the funtion of this class and if it
-#   has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#   External Node Classifier as a comma separated list of hostnames." (Note,
-#   global variables should not be used in preference to class parameters  as of
-#   Puppet 2.6.)
 #
 # === Examples
 #
-#  class { monophylizer:
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ]
-#  }
+#  class { monophylizer: }
 #
 # === Authors
 #
@@ -36,6 +19,9 @@
 # Copyright 2013 Your name here, unless otherwise noted.
 #
 class monophylizer {
+  include concat::setup
+  include apache
+
   package { 'perl-doc':
     ensure => present,
   }
@@ -48,15 +34,7 @@ class monophylizer {
     require  => Package['perl-doc'],
   }
 
-#  class { 'concat::setup': }
-  include concat::setup
-  include apache
-#  class { 'apache': }
-#  class { 'apache::mod::cgi': }
-
-  class { 'monophylizer::instances':
-#    require => File['monophylizer_htmlroot', 'monophylizer_logdir'],
-  }
+  class { 'monophylizer::instances': }
 
   vcsrepo { '/var/monophylizer':
     ensure   => latest,
@@ -64,18 +42,6 @@ class monophylizer {
     source   => 'https://github.com/ncbnaturalis/monophylizer.git',
     require  => Class['monophylizer::instances'],
   }
-
-#  file { 'monophylizer_htmlroot':
-#    ensure  => 'directory',
-#    mode    => '0755',
-#    path    => '/var/www',
-#  }
-
-#  file { 'monophylizer_logdir':
-#    ensure  => 'directory',
-#    mode    => '0755',
-#    path    => '/var/log/apache2',
-#  }
 
   file { '/var/monophylizer/script/monophylizer.pl':
     ensure  => 'file',
@@ -90,7 +56,7 @@ class monophylizer {
     require => Vcsrepo['/var/monophylizer'],
   }
 
-  file { '/var/www/monophylizer/monophylizer.html':
+  file { '/var/www/monophylizer/index.html':
     ensure  => 'link',
     mode    => '0644',
     target  => '/var/monophylizer/html/monophylizer.html',

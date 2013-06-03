@@ -39,35 +39,16 @@ class dierendeterminatie (
   $backmeup = true,
   $backuphour = 1,
   $backupminute = 1,
-  $packages = 'httpd',
 ) {
 
-  # class { 'concat::setup': }
   include concat::setup
-  # Create apache server, enable php and rewrite mod's
   include apache
-  # class { 'apache': }
 
   # Create all virtual hosts from hiera
-  class { 'dierendeterminatie::instances':
-#    require => File['dierendeterminatie_htmlroot', 'dierendeterminatie_logdir'],
-  }
+  class { 'dierendeterminatie::instances': }
 
   # Create mysql server
-  # class { 'mysql::server': }
   include mysql::server
-
-#  file { 'dierendeterminatie_htmlroot':
-#    ensure  => 'directory',
-#    mode    => '0755',
-#    path    => '/var/www',
-#  }
-
-#  file { 'dierendeterminatie_logdir':
-#    ensure  => 'directory',
-#    mode    => '0755',
-#    path    => '/var/log/apache2',
-#  }
 
   if $backmeup == true {
     class { 'dierendeterminatie::backmeup':

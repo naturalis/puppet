@@ -7,7 +7,6 @@
 # == Usage:
 # include puppi::mcollective::server
 #
-# :include:../README.mcollective
 #
 class puppi::mcollective::server {
 

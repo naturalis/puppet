@@ -1,1 +1,2 @@
 class { 'motd': }
+class { 'puppetdocu': }

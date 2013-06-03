@@ -11,7 +11,6 @@
 #   project  => "spysite",
 # }
 #
-# :include:../README.deploy
 #
 define puppi::deploy (
   $command,

@@ -15,7 +15,6 @@
 #   run  => [ "ifconfig" , "route -n" ],
 # }
 #
-# :include:../README.info
 #
 define puppi::info (
   $description  = '',

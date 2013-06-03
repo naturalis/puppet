@@ -9,7 +9,6 @@
 #   log  => [ "/var/log/syslog" , "/var/log/messages" ],
 # }
 #
-# :include:../README.log
 #
 define puppi::log (
   $log,
