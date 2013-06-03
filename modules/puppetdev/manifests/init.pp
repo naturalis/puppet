@@ -37,6 +37,10 @@
 # Copyright 2013 Your name here, unless otherwise noted.
 #
 class puppetdev {
+
+  include stdlib
+  include git
+
   vcsrepo { '/root/demo-puppet-repo':
     ensure   => present,
     provider => git,

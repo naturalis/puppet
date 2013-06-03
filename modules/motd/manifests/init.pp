@@ -12,7 +12,9 @@
 #  include motd
 #
 # [Remember: No empty lines between comments and class definition]
-class motd {
+class motd (
+  $mymessage = ''
+) {
   if $::kernel == 'Linux' {
     file { '/etc/motd':
       ensure  => file,
