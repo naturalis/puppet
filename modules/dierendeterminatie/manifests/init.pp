@@ -39,6 +39,10 @@ class dierendeterminatie (
   $backmeup = true,
   $backuphour = 1,
   $backupminute = 1,
+  $autorestore = true,
+  $restoreurl = 'http://188.142.55.189/',
+  $restoreversion = 'latest',
+
 ) {
 
   include concat::setup
@@ -54,6 +58,13 @@ class dierendeterminatie (
     class { 'dierendeterminatie::backmeup':
       backuphour   => $backuphour,
       backupminute => $backupminute,
+    }
+  }
+
+  if $autorestore == true {
+    class { 'dierendeterminatie::restore':
+      url         => $restoreurl,
+      version     => $restoreversion,
     }
   }
 }
