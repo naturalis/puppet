@@ -42,7 +42,7 @@ class dierendeterminatie (
   $autorestore = true,
   $restoreurl = 'http://188.142.55.189/',
   $restoreversion = 'latest',
-
+  $backupdir = '/tmp/backups',
 ) {
 
   include concat::setup
@@ -53,6 +53,15 @@ class dierendeterminatie (
 
   # Create mysql server
   include mysql::server
+
+  file { 'backupdir':
+    ensure => 'directory',
+    path   => $backupdir,
+    mode   => '0700',
+    owner  => 'root',
+    group  => 'root',
+  }
+
 
   if $backmeup == true {
     class { 'dierendeterminatie::backmeup':

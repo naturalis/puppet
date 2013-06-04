@@ -9,10 +9,10 @@ class dierendeterminatie::restore (
   notify {'Restore enabled':}
 
   package { 'unzip':
-    ensure => installed,
+    ensure => present,
   }
 
-  fetchfile{ 'fetchdb':
+  fetchfile { 'fetchdb':
     downloadurl     => "${url}${version}",
     downloadfile    => $version,
     downloadto      => $backupdir,

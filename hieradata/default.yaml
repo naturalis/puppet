@@ -8,6 +8,11 @@ dierendeterminatie:
 dierendeterminatie::backmeup: true
 dierendeterminatie::backuphour: 2
 dierendeterminatie::backupminute: 2
+dierendeterminatie::backupdir: '/tmp/backups'
+dierendeterminatie::autorestore: true
+dierendeterminatie::restoreurl: 'http://188.142.55.189/'
+dierendeterminatie::restoreversion: 'latest'
+
 mysql::config::default_engine: myisam
 
 monophylizer:
@@ -21,3 +26,4 @@ monophylizer:
 
 monophylizer::config::repo: https://github.com/ncbnaturalis/monophylizer.git
 
+puppetdocu::documentdir: '/etc/puppet/doc'

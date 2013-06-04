@@ -64,12 +64,4 @@ class mysql::backup (
     group   => 'root',
     content => template('mysql/mysqlbackup.sh.erb'),
   }
-
-  file { 'mysqlbackupdir':
-    ensure => 'directory',
-    path   => $backupdir,
-    mode   => '0700',
-    owner  => 'root',
-    group  => 'root',
-  }
 }
