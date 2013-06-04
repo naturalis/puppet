@@ -26,9 +26,9 @@
 #   }
 #
 class mysql::backup (
-  $backupuser,
-  $backuppassword,
-  $backupdir,
+  $backupuser = undef,
+  $backuppassword = undef,
+  $backupdir = unfdef,
   $backupcompress = true,
   $backuphour = 4,
   $backupminute = 5,
@@ -43,7 +43,7 @@ class mysql::backup (
   }
 
   database_grant { "${backupuser}@localhost":
-    privileges => [ 'Select_priv', 'Reload_priv', 'Lock_tables_priv', 'Show_view_priv' ],
+    privileges => ['Select_priv','Reload_priv','Lock_tables_priv','Show_view_priv'],
     require    => Database_user["${backupuser}@localhost"],
   }
 
