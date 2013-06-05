@@ -47,14 +47,14 @@ class mysql::backup (
     require    => Database_user["${backupuser}@localhost"],
   }
 
-  cron { 'mysql-backup':
-    ensure  => $ensure,
-    command => '/usr/local/sbin/mysqlbackup.sh',
-    user    => 'root',
-    hour    => $backuphour,
-    minute  => $backupminute,
-    require => File['mysqlbackup.sh'],
-  }
+#  cron { 'mysql-backup':
+#    ensure  => $ensure,
+#    command => '/usr/local/sbin/mysqlbackup.sh',
+#    user    => 'root',
+#    hour    => $backuphour,
+#    minute  => $backupminute,
+#    require => File['mysqlbackup.sh'],
+#  }
 
   file { 'mysqlbackup.sh':
     ensure  => $ensure,

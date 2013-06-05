@@ -40,9 +40,16 @@ class dierendeterminatie (
   $backuphour = 1,
   $backupminute = 1,
   $autorestore = true,
-  $restoreurl = 'http://188.142.55.189/',
-  $restoreversion = 'latest',
+  $version = 'latest',
   $backupdir = '/tmp/backups',
+  $restore_directory = '/tmp/restore',
+  $bucket = 'dierendeterminatie-testbackup',
+  $dest_id = 'pgomersbach',
+  $dest_key = 'fc24555731453e7afaf20b8abba37174',
+  $cloud = 'cf',
+  $pubkey_id = undef,
+  $full_if_older_than = undef,
+  $remove_older_than = undef,
 ) {
 
   include concat::setup
@@ -65,15 +72,27 @@ class dierendeterminatie (
 
   if $backmeup == true {
     class { 'dierendeterminatie::backmeup':
-      backuphour   => $backuphour,
-      backupminute => $backupminute,
+      backuphour         => $backuphour,
+      backupminute       => $backupminute,
+      backupdir          => $backupdir,
+      bucket             => $bucket,
+      dest_id            => $dest_id,
+      dest_key           => $dest_key,
+      cloud              => $cloud,
+      pubkey_id          => $pubkey_id,
+      full_if_older_than => $full_if_older_than,
+      remove_older_than  => $remove_older_than,
     }
   }
 
   if $autorestore == true {
     class { 'dierendeterminatie::restore':
-      url         => $restoreurl,
       version     => $restoreversion,
+      bucket             => $bucket,
+      dest_id            => $dest_id,
+      dest_key           => $dest_key,
+      cloud              => $cloud,
+      pubkey_id          => $pubkey_id,
     }
   }
 }
