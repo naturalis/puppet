@@ -16,15 +16,21 @@ class dierendeterminatie::restore (
     ensure => present,
   }
 
+  duplicity::restore { 'a_restore':
+    directory          => $restore_directory,
+    bucket             => $bucket,
+    dest_id            => $dest_id,
+    dest_key           => $dest_key,
+    cloud              => $cloud,
+    pubkey_id          => $pubkey_id,
+#    require            => Class['mysql::backup'],
+    post_command        => '/usr/local/sbin/mysqlbackup.sh',
+  }
+
+
 #  exec { 'getdata':
 #    path => '/usr/local/sbin/file-restore.sh',
 #  }
-
-  file { "$name_file-restore.sh":
-    path => '/usr/local/sbin/file-restore.sh',
-    content => template('duplicity/file-restore.sh.erb'),
-    mode    => '0755',
-  }
 
 
 #  class { 'mysql::restore':
