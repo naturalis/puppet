@@ -16,9 +16,9 @@ class dierendeterminatie::restore (
     ensure => present,
   }
 
-  exec { 'getdata':
-    path => '/usr/local/sbin/file-restore.sh',
-  }
+#  exec { 'getdata':
+#    path => '/usr/local/sbin/file-restore.sh',
+#  }
 
   file { "$name_file-restore.sh":
     path => '/usr/local/sbin/file-restore.sh',
