@@ -56,13 +56,13 @@
 # http://github.com/ripienaar/puppet-concat/
 #
 # CONTACT:
-# R.I.Pienaar <rip@devco.net> 
+# R.I.Pienaar <rip@devco.net>
 # Volcane on freenode
 # @ripienaar on twitter
 # www.devco.net
 
 
-# Sets up so that you can use fragments to build a final config file, 
+# Sets up so that you can use fragments to build a final config file,
 #
 # OPTIONS:
 #  - mode       The mode of the final file
@@ -147,21 +147,21 @@ define concat($mode = 0644, $owner = "root", $group = $concat::setup::root_group
     },
       notify   => Exec["concat_${name}"];
 
-   "${fragdir}/fragments.concat":
-     ensure   => present;
+ "${fragdir}/fragments.concat":
+   ensure   => present;
 
-   "${fragdir}/${concat_name}":
-     ensure   => present;
+ "${fragdir}/${concat_name}":
+   ensure   => present;
 
-   $name:
-     source   => "${fragdir}/${concat_name}",
-     owner    => $owner,
-     group    => $group,
-     checksum => md5,
-     mode     => $mode,
-     ensure   => present,
-     alias    => "concat_${name}";
-  }
+ $name:
+   source   => "${fragdir}/${concat_name}",
+   owner    => $owner,
+   group    => $group,
+   checksum => md5,
+   mode     => $mode,
+   ensure   => present,
+   alias    => "concat_${name}";
+}
 
   exec{"concat_${name}":
     user      => root,
