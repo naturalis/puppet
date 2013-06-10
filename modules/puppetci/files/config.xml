@@ -4,7 +4,7 @@
   <description>Puppet job to:&#xd;
 &lt;ul&gt;&#xd;
 &lt;li&gt;Check puppet syntax&#xd;
-&lt;li&gt;Check Ruby erb syntax&#xd;
+&lt;li&gt;Check ruby erb syntax&#xd;
 &lt;li&gt;Check puppet style guide&#xd;
 &lt;li&gt;Generate puppet documentation&#xd;
 &lt;/ul&gt; </description>
