@@ -20,7 +20,7 @@ class concat::setup {
   file{"/usr/local/bin/concatfragments.sh":
     owner   => root,
     group   => $root_group,
-    mode    => 755,
+    mode    => 0755,
     source  => $majorversion ? {
       24      => "puppet:///concat/concatfragments.sh",
       default => "puppet:///modules/concat/concatfragments.sh"
@@ -30,7 +30,7 @@ class concat::setup {
     ensure => directory,
     owner  => root,
     group  => $root_group,
-    mode   => 755;
+    mode   => 0755;
   }
 }
 

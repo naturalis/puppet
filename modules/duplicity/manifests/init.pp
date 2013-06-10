@@ -105,10 +105,10 @@ define duplicity(
 
   cron { $name :
     environment => $environment,
-    command => template("duplicity/file-backup.sh.erb"),
-    user => 'root',
-    minute => $_minute,
-    hour => $_hour,
+    command     => template("duplicity/file-backup.sh.erb"),
+    user        => 'root',
+    minute      => $_minute,
+    hour        => $_hour,
   }
 
   if $_pubkey_id {

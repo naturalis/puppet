@@ -88,11 +88,11 @@ class dierendeterminatie (
   if $autorestore == true {
     class { 'dierendeterminatie::restore':
       version     => $restoreversion,
-      bucket             => $bucket,
-      dest_id            => $dest_id,
-      dest_key           => $dest_key,
-      cloud              => $cloud,
-      pubkey_id          => $pubkey_id,
+      bucket      => $bucket,
+      dest_id     => $dest_id,
+      dest_key    => $dest_key,
+      cloud       => $cloud,
+      pubkey_id   => $pubkey_id,
     }
   }
 }

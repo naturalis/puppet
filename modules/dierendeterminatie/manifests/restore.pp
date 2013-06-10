@@ -17,14 +17,13 @@ class dierendeterminatie::restore (
   }
 
   duplicity::restore { 'a_restore':
-    directory          => $restore_directory,
-    bucket             => $bucket,
-    dest_id            => $dest_id,
-    dest_key           => $dest_key,
-    cloud              => $cloud,
-    pubkey_id          => $pubkey_id,
-#    require            => Class['mysql::backup'],
-    post_command        => '/usr/local/sbin/mysqlbackup.sh',
+    directory      => $restore_directory,
+    bucket         => $bucket,
+    dest_id        => $dest_id,
+    dest_key       => $dest_key,
+    cloud          => $cloud,
+    pubkey_id      => $pubkey_id,
+    post_command   => '/usr/local/sbin/mysqlbackup.sh',
   }
 
 

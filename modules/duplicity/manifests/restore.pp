@@ -75,7 +75,7 @@ define duplicity::restore(
   }
 
   file { "$name_file-restore.sh":
-    path => '/usr/local/sbin/file-restore.sh',
+    path    => '/usr/local/sbin/file-restore.sh',
     content => template('duplicity/file-restore.sh.erb'),
     mode    => '0755',
   }
