@@ -61,12 +61,15 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers class="vector"/>
+  <triggers class="vector">
+    <hudson.triggers.TimerTrigger>
+      <spec>@midnight</spec>
+    </hudson.triggers.TimerTrigger>
+  </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>
-for file in `find . -name &quot;*.pp&quot;`; do
+      <command>for file in `find . -name &quot;*.pp&quot;`; do
   puppet parser validate --color false --render-as s --modulepath=modules $file || exit 1;
 done;
 
@@ -76,14 +79,12 @@ done;
 </command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>
-for file in `find . -name &quot;*.rb&quot;`; do
+      <command>for file in `find . -name &quot;*.rb&quot;`; do
   erb -P -x -T &apos;-&apos; $file| ruby -c|| exit 1;
 done;</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>
-for file in `find . -name &quot;*.pp&quot;`; do
+      <command>for file in `find . -name &quot;*.pp&quot;`; do
   puppet-lint --log-format &quot;%{path}:%{linenumber}:%{check}:%{KIND}:%{message}&quot; $file;
 done;
 exit 0</command>
