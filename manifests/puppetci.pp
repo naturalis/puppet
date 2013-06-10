@@ -1,1 +1,2 @@
-lass { 'puppetci': }
+class { 'puppetci': }
+onzin
