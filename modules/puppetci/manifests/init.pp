@@ -26,30 +26,17 @@ class puppetci {
     ensure => installed,
   }
 
-
-
-  #For displaying fonts
-#  package{
-#    'dejavu-lgc-sans-mono-fonts':;
-#    'dejavu-sans-mono-fonts':;
-#  }
-
-  #for Git :)
+  #For RVM
   package {
-    'git':;
-  }
-
-  #For RVM 
-  package {
-     'build-essential':;
-     'dkms':;
-     'gcc':;
-     'linux-headers-generic':;
-     'ncurses-dev':;
-     'zlibc':;
-     'zlib1g':;
-     'zlib1g-dev':;
-     'curl':;
+    'build-essential':;
+    'dkms':;
+    'gcc':;
+    'linux-headers-generic':;
+    'ncurses-dev':;
+    'zlibc':;
+    'zlib1g':;
+    'zlib1g-dev':;
+#     'curl':;
 #    'gcc-c++':;
 #    'patch':;
 #    'readline':;
@@ -78,29 +65,28 @@ class puppetci {
   class {'puppetci::plugins':
     require => Package['jenkins'];
   }
-  file {
-    '/var/lib/jenkins/org.jenkinsci.plugins.ghprb.GhprbTrigger.xml':
-    source => 'puppet:///modules/puppetci/org.jenkinsci.plugins.ghprb.GhprbTrigger.xml',
+  file { '/var/lib/jenkins/org.jenkinsci.plugins.ghprb.GhprbTrigger.xml':
+    source  => 'puppet:///modules/puppetci/org.jenkinsci.plugins.ghprb.GhprbTrigger.xml',
     replace => 'no', 
-    owner => 'jenkins',
-    group => 'jenkins';
+    owner   => 'jenkins',
+    group   => 'jenkins';
 
     '/var/lib/jenkins/jobs':
-      ensure => directory,
-      owner => 'jenkins',
-      group => 'jenkins';
+    ensure => directory,
+    owner  => 'jenkins',
+    group  => 'jenkins';
 
     '/var/lib/jenkins/jobs/PuppetCI':
-      ensure => directory,
-      owner => 'jenkins',
-      group => 'jenkins';
+    ensure => directory,
+    owner  => 'jenkins',
+    group  => 'jenkins';
 
     '/var/lib/jenkins/jobs/PuppetCI/config.xml':
-      ensure => file,
-      replace => 'no', 
-      source => 'puppet:///modules/puppetci/config.xml',
-      owner => 'jenkins',
-      group => 'jenkins';
+    ensure  => file,
+    replace => 'no', 
+    source  => 'puppet:///modules/puppetci/config.xml',
+    owner   => 'jenkins',
+    group   => 'jenkins';
   }
 
 }
