@@ -78,6 +78,11 @@ class puppetci {
     owner  => 'jenkins',
     group  => 'jenkins';
 
+    '/var/lib/jenkins/jobs/PuppetCI-all':
+    ensure => directory,
+    owner  => 'jenkins',
+    group  => 'jenkins';
+
     '/var/lib/jenkins/jobs/PuppetCI/config.xml':
     ensure  => file,
     replace => 'no',
