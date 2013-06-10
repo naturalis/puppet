@@ -22,10 +22,6 @@
 
 class puppetci {
 
-#  package { 'openjdk-7-jdk':
-#    ensure => installed,
-#  }
-
   package { 'rubygems':
     ensure   => installed,
   }
@@ -42,7 +38,7 @@ class puppetci {
     'dkms':;
     'gcc':;
     'linux-headers-generic':;
-    'ncurses-dev':;
+#    'ncurses-dev':;
     'zlibc':;
     'zlib1g':;
     'zlib1g-dev':;
@@ -104,6 +100,10 @@ class puppetci {
     replace => 'no',
     owner   => 'jenkins',
     group   => 'jenkins',
+  }
+
+  exec { '/usr/bin/wget http://localhost:8080/job/PuppetCI/build -o /dev/null':
+    subscribe => Service['jenkins'],
   }
 
 }
