@@ -41,7 +41,7 @@
 #   (Optional) - The destination directory where the zip is unpacked
 #
 # [*zip_user*]
-#   (Optional) - The user to be used for deploy operations of the zip 
+#   (Optional) - The user to be used for deploy operations of the zip
 #
 # [*zip_suffix*]
 #   (Optional) - The suffix (Maven qualifier) that might be appended to the zip
