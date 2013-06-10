@@ -1,6 +1,6 @@
 # A system to construct files using fragments from other files or templates.
 #
-# This requires at least puppet 0.25 to work correctly as we use some 
+# This requires at least puppet 0.25 to work correctly as we use some
 # enhancements in recursive directory management and regular expressions
 # to do the work here.
 #
