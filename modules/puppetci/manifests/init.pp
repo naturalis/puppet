@@ -22,9 +22,9 @@
 
 class puppetci {
 
-  package { 'openjdk-7-jdk':
-    ensure => installed,
-  }
+#  package { 'openjdk-7-jdk':
+#    ensure => installed,
+#  }
 
   #For RVM
   package {
