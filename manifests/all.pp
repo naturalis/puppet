@@ -9,5 +9,5 @@ class { 'motd':
   mymessage => 'Classes included:
       stdlib, git, puppetdev,
       dierendeterminatie, monophylizer,
-      puppetdocu, motd'
+      puppetdocu, puppetci, motd'
   }
