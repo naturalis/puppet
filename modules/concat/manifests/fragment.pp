@@ -1,5 +1,5 @@
 # Puts a file fragment into a directory previous setup using concat
-# 
+#
 # OPTIONS:
 #   - target    The file that these fragments belong to
 #   - content   If present puts the content into the file
@@ -22,19 +22,18 @@ define concat::fragment($target, $content='', $source='', $order=10, $ensure = "
     # if content is passed, use that, else if source is passed use that
     # if neither passed, but $ensure is in symlink form, make a symlink
     case $content {
-        "": {
-                case $source {
-                        "": {
-                                case $ensure {
-                                    "", "absent", "present", "file", "directory": {
-                                        crit("No content, source or symlink specified")
-                                    }
-                                }
-                            }
-                   default: { File{ source => $source } }
-                }
+      "": {
+        case $source {
+          "": {
+            case $ensure {
+              "", "absent", "present", "file", "directory": {
+              crit("No content, source or symlink specified")
             }
-        default: { File{ content => $content } }
+          }                  }
+          default: { File{ source => $source } }
+        }
+      }
+      default: { File{ content => $content } }
     }
 
     file{"${fragdir}/fragments/${order}_${safe_name}":
