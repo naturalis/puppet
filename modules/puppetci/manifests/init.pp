@@ -26,6 +26,16 @@ class puppetci {
 #    ensure => installed,
 #  }
 
+  package { 'rubygems':
+    ensure   => installed,
+  }
+
+  package { 'puppet-lint':
+    ensure   => installed,
+    require  => Package['rubygems'],
+    provider => 'gem',
+  }
+
   #For RVM
   package {
     'build-essential':;
