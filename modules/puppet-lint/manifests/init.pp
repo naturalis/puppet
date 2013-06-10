@@ -1,11 +1,10 @@
-# == Class: puppetdev
+# == Class: lint
 #
-# Install puppet development tools.
-# Clone git repo
+# Full description of class lint here.
 #
 # === Parameters
 #
-# repo (todo).
+# Document parameters here.
 #
 # [*sample_parameter*]
 #   Explanation of what this parameter affects and what it defaults to.
@@ -24,8 +23,8 @@
 #
 # === Examples
 #
-#  class { puppetdev:
-#    repos => [ 'https://code.google.com/p/demo-puppet-repo', 'https://code.google.com/p/openstack-poc' ]
+#  class { puppet-lint:
+#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ]
 #  }
 #
 # === Authors
@@ -36,25 +35,14 @@
 #
 # Copyright 2013 Your name here, unless otherwise noted.
 #
-class puppetdev {
-
-  include stdlib
-  include git
-  include puppet-lint
-
-  vcsrepo { '/root/demo-puppet-repo':
-    ensure   => present,
-    provider => git,
-    source   => 'https://code.google.com/p/demo-puppet-repo',
+class puppet-lint {
+  package { 'rubygems':
+    ensure   => installed,
   }
 
-  package { 'graphviz':
-    ensure  => installed,
-  }
-
-  exec {'install-pre-commit-hook':
-    command => '/bin/cp /root/demo-puppet-repo/private/scripts/pre-commit /root/demo-puppet-repo/.git/hooks/pre-commit',
-    creates => '/root/demo-puppet-repo/.git/hooks/pre-commit',
-    require => Class['puppet-lint'],
+  package { 'puppet-lint':
+    ensure   => installed,
+    require  => Package['rubygems'],
+    provider => 'gem',
   }
 }

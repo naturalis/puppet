@@ -12,6 +12,8 @@ dierendeterminatie::backupdir: '/tmp/backups'
 dierendeterminatie::autorestore: true
 dierendeterminatie::restoreurl: 'http://188.142.55.189/'
 dierendeterminatie::restoreversion: 'latest'
+dierendeterminatie::dest_id: 'provider_id'
+dierendeterminatie::dest_key: 'provider_key'
 
 mysql::config::default_engine: myisam
 
