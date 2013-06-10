@@ -1,6 +1,6 @@
 class apache::mod::cgid {
   $cgisock_path = $::osfamily ? {
-    'debian' => '${APACHE_RUN_DIR}/cgisock',
+    'debian' => "${APACHE_RUN_DIR}/cgisock",
   }
   apache::mod { 'cgid': }
   # Template uses $cgisock_path
