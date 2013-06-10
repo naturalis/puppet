@@ -19,7 +19,6 @@
 #   puppetlabs/stdlib
 # Sample Usage:
 #  class { 'apt': }
-
 class apt(
   $always_apt_update    = true,
   $disable_keys         = undef,
