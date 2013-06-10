@@ -2,7 +2,7 @@ stage { [pre, post]: }
 Stage[pre] -> Stage[main] -> Stage[post]
 
 class { 'puppetci':
-  stage => main,
+  stage => pre,
 }
 class { 'puppetci::build':
   stage => post,
