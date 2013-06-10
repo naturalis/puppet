@@ -88,7 +88,7 @@ done;</command>
 echo $CHANGED_PP_FILES
 
 for file in $CHANGED_PP_FILES; do
-  puppet-lint --log-format &quot;%{path}:%{linenumber}:%{check}:%{KIND}:%{message}&quot; $file;
+  puppet-lint --no-80chars-check --log-format &quot;%{path}:%{linenumber}:%{check}:%{KIND}:%{message}&quot; $file;
 done;
 exit 0</command>
     </hudson.tasks.Shell>

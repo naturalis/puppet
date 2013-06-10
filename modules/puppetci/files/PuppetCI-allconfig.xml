@@ -85,7 +85,7 @@ done;</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>for file in `find . -name &quot;*.pp&quot;`; do
-  puppet-lint --log-format &quot;%{path}:%{linenumber}:%{check}:%{KIND}:%{message}&quot; $file;
+  puppet-lint --no-80chars-check --log-format &quot;%{path}:%{linenumber}:%{check}:%{KIND}:%{message}&quot; $file;
 done;
 exit 0</command>
     </hudson.tasks.Shell>
