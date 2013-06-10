@@ -21,7 +21,7 @@
 #
 
 class puppetci {
-  include puppet-lint 
+  include puppet-lint
 
   #For RVM
   package {
