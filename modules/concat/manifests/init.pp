@@ -147,21 +147,21 @@ define concat($mode = 0644, $owner = "root", $group = $concat::setup::root_group
     },
       notify   => Exec["concat_${name}"];
 
- "${fragdir}/fragments.concat":
-   ensure   => present;
+  "${fragdir}/fragments.concat":
+    ensure   => present;
 
- "${fragdir}/${concat_name}":
-   ensure   => present;
+  "${fragdir}/${concat_name}":
+    ensure   => present;
 
- $name:
-   source   => "${fragdir}/${concat_name}",
-   owner    => $owner,
-   group    => $group,
-   checksum => md5,
-   mode     => $mode,
-   ensure   => present,
-   alias    => "concat_${name}";
-}
+  $name:
+    source   => "${fragdir}/${concat_name}",
+    owner    => $owner,
+    group    => $group,
+    checksum => md5,
+    mode     => $mode,
+    ensure   => present,
+    alias    => "concat_${name}";
+  }
 
   exec{"concat_${name}":
     user      => root,
