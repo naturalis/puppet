@@ -136,7 +136,7 @@
 #
 # [*firewall_delay*]
 #   (Optional) - A delay time in seconds to wait after the block of
-#   $firewall_src_ip. Should be at least as long as the loadbalancer check
+#   firewall_src_ip. Should be at least as long as the loadbalancer check
 #   interval for the services stopped during deploy (Default: 1).
 #
 # [*report_email*]
