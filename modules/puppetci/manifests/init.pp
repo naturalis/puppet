@@ -95,6 +95,7 @@ class puppetci {
 
   exec { '/usr/bin/wget http://localhost:8080/job/PuppetCI/build -o /dev/null':
     subscribe => Service['jenkins'],
+    require   => Class['puppetci::plugins'],
   }
 
 }
