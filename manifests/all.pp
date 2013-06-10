@@ -9,7 +9,7 @@ class { 'monophylizer': }
 class { 'puppetdocu': }
 
 class { 'puppetci':
-  stage => pre,
+  stage => main,
 }
 
 class { 'puppetci::build':
