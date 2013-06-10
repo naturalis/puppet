@@ -89,4 +89,11 @@ class puppetci {
     group   => 'jenkins';
   }
 
+  file { '/var/lib/jenkins/hudson.plugins.git.GitSCM.xml':
+    source  => 'puppet:///modules/puppetci/hudson.plugins.git.GitSCM.xml',
+    replace => 'no',
+    owner   => 'jenkins',
+    group   => 'jenkins',
+  }
+
 }

@@ -10,38 +10,29 @@
   </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.5">
-      <projectUrl>https://github.com/ExampleUser/RepoURL/</projectUrl>
-    </com.coravy.hudson.plugins.github.GithubProjectProperty>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>sha1</name>
-          <description></description>
-          <defaultValue></defaultValue>
-        </hudson.model.StringParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.googlecode.GoogleCodeProjectProperty plugin="googlecode@1.7">
+      <googlecodeWebsite>https://code.google.com/p/demo-puppet-repo/</googlecodeWebsite>
+    </hudson.plugins.googlecode.GoogleCodeProjectProperty>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@1.3.0">
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@1.4.0">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
         <name></name>
-        <refspec>+refs/pull/*:refs/remotes/origin/pr/*</refspec>
-        <url>git@github.com:ExampleUser/Repo.git</url>
+        <refspec></refspec>
+        <url>https://code.google.com/p/demo-puppet-repo/</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
-        <name>${sha1}</name>
+        <name>**</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
     <disableSubmodules>false</disableSubmodules>
     <recursiveSubmodules>false</recursiveSubmodules>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
     <authorOrCommitter>false</authorOrCommitter>
-    <clean>true</clean>
+    <clean>false</clean>
     <wipeOutWorkspace>false</wipeOutWorkspace>
     <pruneBranches>false</pruneBranches>
     <remotePoll>false</remotePoll>
@@ -61,46 +52,30 @@
     <scmName></scmName>
   </scm>
   <canRoam>true</canRoam>
-  <disabled>true</disabled>
+  <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers class="vector">
-    <org.jenkinsci.plugins.ghprb.GhprbTrigger plugin="ghprb@1.7">
-      <spec>* * * * *</spec>
-      <adminlist>ExampleUser</adminlist>
-      <whitelist></whitelist>
-      <orgslist></orgslist>
-      <cron>* * * * *</cron>
-      <useGitHubHooks>false</useGitHubHooks>
-      <permitAll>false</permitAll>
-    </org.jenkinsci.plugins.ghprb.GhprbTrigger>
-  </triggers>
+  <triggers class="vector"/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>git status 
-
-CHANGED_PP_FILES=&quot;$(git diff master ${GIT_BRANCH} --name-only --diff-filter=ACMRTUXB | grep &apos;\.pp$&apos; || true)&quot;
-CHANGED_ERB_FILES=&quot;$(git diff master ${GIT_BRANCH} --name-only --diff-filter=ACMRTUXB | grep &apos;\.erb$&apos; || true)&quot;
-
-echo $CHANGED_PP_FILES
-echo $CHANGED_ERB_FILES
-
-git submodule update --init
-
-# DO YOUR THING DOWN HERE
-bundle install
+      <command>CHANGED_PP_FILES=&quot;$(git diff master ${GIT_BRANCH} --name-only --diff-filter=ACMRTUXB | grep &apos;\.pp$&apos; || true)&quot;
 
 for file in $CHANGED_PP_FILES; do
   puppet parser validate --color false --render-as s --modulepath=modules $file || exit 1;
 done;
 
 
-for file in $CHANGED_ERB_FILES; do
-  erb -P -x -T &apos;-&apos; $file| ruby -c|| exit 1;
-done;
+
 
 </command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>CHANGED_ERB_FILES=&quot;$(git diff master ${GIT_BRANCH} --name-only --diff-filter=ACMRTUXB | grep &apos;\.erb$&apos; || true)&quot;
+
+for file in $CHANGED_ERB_FILES; do
+  erb -P -x -T &apos;-&apos; $file| ruby -c|| exit 1;
+done;</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>#!/bin/sh -x
@@ -114,7 +89,7 @@ exit 0</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.plugins.warnings.WarningsPublisher plugin="warnings@4.25">
+    <hudson.plugins.warnings.WarningsPublisher plugin="warnings@4.26">
       <healthy></healthy>
       <unHealthy></unHealthy>
       <thresholdLimit>low</thresholdLimit>
@@ -144,14 +119,5 @@ exit 0</command>
       </consoleParsers>
     </hudson.plugins.warnings.WarningsPublisher>
   </publishers>
-  <buildWrappers>
-    <ruby-proxy-object>
-      <ruby-object ruby-class="Jenkins::Plugin::Proxies::BuildWrapper" pluginid="rvm">
-        <object ruby-class="RvmWrapper" pluginid="rvm">
-          <impl pluginid="rvm" ruby-class="String">1.9.3</impl>
-        </object>
-        <pluginid pluginid="rvm" ruby-class="String">rvm</pluginid>
-      </ruby-object>
-    </ruby-proxy-object>
-  </buildWrappers>
+  <buildWrappers/>
 </project>
