@@ -1,1 +1,1 @@
-class { 'puppetci': }  
+class { 'puppetci': }
