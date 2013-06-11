@@ -1,0 +1,1 @@
+class {'puppetci::slave': }

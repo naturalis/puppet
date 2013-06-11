@@ -29,8 +29,8 @@ class jenkins::slave (
     }
     'Debian': {
       #needs java package for debian.
-      fail( "Unsupported OS family: ${::osfamily}" )
-  #    $java_package=''
+#      fail( "Unsupported OS family: ${::osfamily}" )
+      $java_package='default-jre-headless'
 
     }
 
