@@ -1,6 +1,4 @@
 class puppetci::slave {
+  include puppet-lint
   include jenkins::slave
-  notice("The class is: ${name}")
-
-
 }
