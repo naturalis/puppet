@@ -7,8 +7,8 @@
 #
 class jenkins::slave (
   $masterurl = 'http://jenkins:8080',
-  $ui_user = undef,
-  $ui_pass = undef,
+  $ui_user = 'slave',
+  $ui_pass = 'bemyslave',
   $version = '1.8',
   $executors = 2,
   $manage_slave_user = 1,
