@@ -6,7 +6,7 @@
 #  by declaring it..
 #
 class jenkins::slave (
-  $masterurl = undef,
+  $masterurl = 'http://jenkins:8080',
   $ui_user = undef,
   $ui_pass = undef,
   $version = '1.8',
