@@ -14,6 +14,9 @@ dierendeterminatie::restoreurl: 'http://188.142.55.189/'
 dierendeterminatie::restoreversion: 'latest'
 dierendeterminatie::dest_id: 'provider_id'
 dierendeterminatie::dest_key: 'provider_key'
+dierendeterminatie::coderepo: 'http://dieren-code.googlecode.com/svn/trunk/'
+dierendeterminatie::repotype: 'svn'
+dierendeterminatie::coderoot: '/var/www/dierendeterminatie'
 
 mysql::config::default_engine: myisam
 

@@ -50,6 +50,9 @@ class dierendeterminatie (
   $pubkey_id = undef,
   $full_if_older_than = undef,
   $remove_older_than = undef,
+  $coderepo = 'svn://dev2.etibioinformatics.nl/linnaeus_ng/trunk',
+  $repotype = 'svn',
+  $coderoot = '/var/www/dierendeterminatie',
 ) {
 
   include concat::setup
@@ -60,6 +63,17 @@ class dierendeterminatie (
 
   # Create mysql server
   include mysql::server
+
+  package { subversion:
+    ensure => installed,
+  }
+
+  vcsrepo { $coderoot:
+    ensure   => latest,
+    provider => $repotype,
+    source   => $coderepo,
+    require  => [ Class['dierendeterminatie::instances'], Package['subversion'] ],
+  }
 
   file { 'backupdir':
     ensure => 'directory',
