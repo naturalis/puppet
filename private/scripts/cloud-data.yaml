@@ -1,37 +1,3 @@
 #cloud-config
 #
-# To automatically configure resolv.conf when the
-# instance boots for the first time.
-#
-# Ensure that your yaml is valid and pass this as user-data when starting
-# the instance. Also be sure that your cloud.cfg file includes this
-# configuration module in the appropirate section.
-#
-cloud_config_modules:
- - mounts
- - ssh-import-id
- - locale
- - set-passwords
- - grub-dpkg
- - apt-pipelining
- - apt-update-upgrade
- - landscape
- - timezone
- - puppet
- - chef
- - salt-minion
- - mcollective
- - disable-ec2-metadata
- - runcmd
- - byobu
- - resolv-conf
-manage-resolv-conf: true
-
-resolv_conf:
-  nameservers: ['8.8.4.4', '8.8.8.8']
-  searchdomains:
-    - cloud.naturalis.nl
-  domain: naturalis.nl
-  options:
-    rotate: true
-    timeout: 1
+timezone: Europe/Amsterdam
