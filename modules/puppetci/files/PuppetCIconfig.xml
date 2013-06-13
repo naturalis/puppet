@@ -7,7 +7,8 @@
 &lt;li&gt;Check ruby erb syntax&#xd;
 &lt;li&gt;Check puppet style guide&#xd;
 &lt;li&gt;Generate puppet documentation&#xd;
-&lt;/ul&gt; </description>
+&lt;/ul&gt; &#xd;
+  Runs at code checkin</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>3</daysToKeep>
     <numToKeep>10</numToKeep>
@@ -63,16 +64,9 @@
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers class="vector">
-    <org.jenkinsci.plugins.ghprb.GhprbTrigger plugin="ghprb@1.8">
-      <spec>*/5 * * * *</spec>
-      <adminlist>AdminListHere</adminlist>
-      <whitelist></whitelist>
-      <orgslist></orgslist>
-      <cron>*/5 * * * *</cron>
-      <useGitHubHooks>false</useGitHubHooks>
-      <permitAll>false</permitAll>
-      <autoCloseFailedPullRequests>false</autoCloseFailedPullRequests>
-    </org.jenkinsci.plugins.ghprb.GhprbTrigger>
+    <com.cloudbees.jenkins.GitHubPushTrigger plugin="github@1.6">
+      <spec></spec>
+    </com.cloudbees.jenkins.GitHubPushTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
