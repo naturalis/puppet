@@ -67,6 +67,16 @@
     <com.cloudbees.jenkins.GitHubPushTrigger plugin="github@1.6">
       <spec></spec>
     </com.cloudbees.jenkins.GitHubPushTrigger>
+    <org.jenkinsci.plugins.ghprb.GhprbTrigger plugin="ghprb@1.8">
+      <spec>*/5 * * * *</spec>
+      <adminlist>AdminListHere</adminlist>
+      <whitelist></whitelist>
+      <orgslist></orgslist>
+      <cron>*/5 * * * *</cron>
+      <useGitHubHooks>false</useGitHubHooks>
+      <permitAll>false</permitAll>
+      <autoCloseFailedPullRequests>false</autoCloseFailedPullRequests>
+    </org.jenkinsci.plugins.ghprb.GhprbTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
