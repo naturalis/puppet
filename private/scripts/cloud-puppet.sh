@@ -2,7 +2,7 @@
 set -e -x
 
 defaultrole=init
-puppet_source=https://code.google.com/p/demo-puppet-repo
+puppet_source=https://github.com/naturalis/puppet.git
 
 
 #

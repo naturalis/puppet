@@ -16,9 +16,10 @@
   </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.plugins.googlecode.GoogleCodeProjectProperty plugin="googlecode@1.7">
-      <googlecodeWebsite>https://code.google.com/p/demo-puppet-repo/</googlecodeWebsite>
-    </hudson.plugins.googlecode.GoogleCodeProjectProperty>
+    <hudson.plugins.googlecode.GoogleCodeProjectProperty plugin="googlecode@1.7"/>
+    <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.6">
+      <projectUrl>https://github.com/naturalis/puppet/</projectUrl>
+    </com.coravy.hudson.plugins.github.GithubProjectProperty>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@1.4.0">
     <configVersion>2</configVersion>
@@ -26,7 +27,7 @@
       <hudson.plugins.git.UserRemoteConfig>
         <name></name>
         <refspec></refspec>
-        <url>https://code.google.com/p/demo-puppet-repo/</url>
+        <url>https://github.com/naturalis/puppet.git</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
@@ -61,7 +62,18 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers class="vector"/>
+  <triggers class="vector">
+    <org.jenkinsci.plugins.ghprb.GhprbTrigger plugin="ghprb@1.8">
+      <spec>*/5 * * * *</spec>
+      <adminlist>AdminListHere</adminlist>
+      <whitelist></whitelist>
+      <orgslist></orgslist>
+      <cron>*/5 * * * *</cron>
+      <useGitHubHooks>false</useGitHubHooks>
+      <permitAll>false</permitAll>
+      <autoCloseFailedPullRequests>false</autoCloseFailedPullRequests>
+    </org.jenkinsci.plugins.ghprb.GhprbTrigger>
+  </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>

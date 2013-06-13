@@ -25,7 +25,7 @@
 # === Examples
 #
 #  class { puppetdev:
-#    repos => [ 'https://code.google.com/p/demo-puppet-repo', 'https://code.google.com/p/openstack-poc' ]
+#    repos => [ 'https://github.com/naturalis/puppet.git', 'https://code.google.com/p/openstack-poc' ]
 #  }
 #
 # === Authors
@@ -42,10 +42,10 @@ class puppetdev {
   include git
   include puppet-lint
 
-  vcsrepo { '/root/demo-puppet-repo':
+  vcsrepo { '/root/puppet':
     ensure   => present,
     provider => git,
-    source   => 'https://code.google.com/p/demo-puppet-repo',
+    source   => 'https://github.com/naturalis/puppet.git',
   }
 
   package { 'graphviz':
@@ -53,8 +53,8 @@ class puppetdev {
   }
 
   exec {'install-pre-commit-hook':
-    command => '/bin/cp /root/demo-puppet-repo/private/scripts/pre-commit /root/demo-puppet-repo/.git/hooks/pre-commit',
-    creates => '/root/demo-puppet-repo/.git/hooks/pre-commit',
+    command => '/bin/cp /root/puppet/private/scripts/pre-commit /root/puppet/.git/hooks/pre-commit',
+    creates => '/root/puppet/.git/hooks/pre-commit',
     require => Class['puppet-lint'],
   }
 }

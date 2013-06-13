@@ -20,7 +20,9 @@
 # Copyright 2013 Matthew Barr.
 #
 
-class puppetci {
+class puppetci (
+  $readonly = true,
+) {
   include puppet-lint
 
   #For RVM
@@ -62,6 +64,26 @@ class puppetci {
   class {'puppetci::plugins':
     require => Package['jenkins'];
   }
+
+  if  $readonly == true {
+    file { '/var/lib/jenkins/config.xml':
+      source  => 'puppet:///modules/puppetci/config-readonly.xml',
+      replace => 'no',
+      owner   => 'jenkins',
+      group   => 'jenkins',
+    }
+  }
+  else {
+    file { '/var/lib/jenkins/config.xml':
+      source  => 'puppet:///modules/puppetci/config-readwrite.xml',
+      replace => 'no',
+      owner   => 'jenkins',
+      group   => 'jenkins',
+    }
+  }
+
+
+
   file { '/var/lib/jenkins/org.jenkinsci.plugins.ghprb.GhprbTrigger.xml':
     source  => 'puppet:///modules/puppetci/org.jenkinsci.plugins.ghprb.GhprbTrigger.xml',
     replace => 'no',

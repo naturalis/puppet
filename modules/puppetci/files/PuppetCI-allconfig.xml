@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Puppet job to:&#xd;
+  <description>Puppet job running at midnight to:&#xd;
 &lt;ul&gt;&#xd;
 &lt;li&gt;Check all puppet syntax&#xd;
 &lt;li&gt;Check all ruby erb syntax&#xd;
@@ -16,9 +16,10 @@
   </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.plugins.googlecode.GoogleCodeProjectProperty plugin="googlecode@1.7">
-      <googlecodeWebsite>https://code.google.com/p/demo-puppet-repo/</googlecodeWebsite>
-    </hudson.plugins.googlecode.GoogleCodeProjectProperty>
+    <hudson.plugins.googlecode.GoogleCodeProjectProperty plugin="googlecode@1.7"/>
+    <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.6">
+      <projectUrl>https://github.com/naturalis/puppet/</projectUrl>
+    </com.coravy.hudson.plugins.github.GithubProjectProperty>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@1.4.0">
     <configVersion>2</configVersion>
@@ -26,7 +27,7 @@
       <hudson.plugins.git.UserRemoteConfig>
         <name></name>
         <refspec></refspec>
-        <url>https://code.google.com/p/demo-puppet-repo/</url>
+        <url>https://github.com/naturalis/puppet.git</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
