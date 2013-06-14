@@ -22,6 +22,7 @@
 
 class puppetci (
   $readonly = true,
+  $createjobs = true,
 ) {
   include puppet-lint
 
