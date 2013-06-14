@@ -68,21 +68,21 @@ class puppetci (
   if  $readonly == true {
     file { '/var/lib/jenkins/config.xml':
       source  => 'puppet:///modules/puppetci/config-readonly.xml',
-      replace => 'no',
+      replace => 'yes',
       owner   => 'jenkins',
       group   => 'jenkins',
+      notify  => Service[ 'jenkins'],
     }
   }
   else {
     file { '/var/lib/jenkins/config.xml':
       source  => 'puppet:///modules/puppetci/config-readwrite.xml',
-      replace => 'no',
+      replace => 'yes',
       owner   => 'jenkins',
       group   => 'jenkins',
+      notify  => Service[ 'jenkins'],
     }
   }
-
-
 
   file { '/var/lib/jenkins/org.jenkinsci.plugins.ghprb.GhprbTrigger.xml':
     source  => 'puppet:///modules/puppetci/org.jenkinsci.plugins.ghprb.GhprbTrigger.xml',
