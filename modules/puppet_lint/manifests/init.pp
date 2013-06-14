@@ -40,7 +40,7 @@ class puppet_lint {
     ensure   => installed,
   }
 
-  package { 'puppet_lint':
+  package { 'puppet-lint':
     ensure   => installed,
     require  => Package['rubygems'],
     provider => 'gem',
