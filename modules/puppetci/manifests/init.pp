@@ -23,7 +23,6 @@
 class puppetci (
   $readonly = true,
 ) {
-
   include puppet-lint
 
   #For RVM
