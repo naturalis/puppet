@@ -23,7 +23,7 @@
 class puppetci (
   $readonly = true,
 ) {
-  include puppet-lint
+  include puppet_lint
 
   package { 'realpath': }
 

@@ -1,4 +1,4 @@
-name    'puppet-lint'
+name    'puppet_lint'
 version '0.0.1'
 source 'UNKNOWN'
 author 'puppet'

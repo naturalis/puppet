@@ -23,7 +23,7 @@
 #
 # === Examples
 #
-#  class { puppet-lint:
+#  class { puppet_lint:
 #    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ]
 #  }
 #
@@ -35,12 +35,12 @@
 #
 # Copyright 2013 Your name here, unless otherwise noted.
 #
-class puppet-lint {
+class puppet_lint {
   package { 'rubygems':
     ensure   => installed,
   }
 
-  package { 'puppet-lint':
+  package { 'puppet_lint':
     ensure   => installed,
     require  => Package['rubygems'],
     provider => 'gem',

@@ -40,7 +40,7 @@ class puppetdev {
 
   include stdlib
   include git
-  include puppet-lint
+  include puppet_lint
 
   vcsrepo { '/root/puppet':
     ensure   => present,
@@ -55,6 +55,6 @@ class puppetdev {
   exec {'install-pre-commit-hook':
     command => '/bin/cp /root/puppet/private/scripts/pre-commit /root/puppet/.git/hooks/pre-commit',
     creates => '/root/puppet/.git/hooks/pre-commit',
-    require => Class['puppet-lint'],
+    require => Class['puppet_lint'],
   }
 }
