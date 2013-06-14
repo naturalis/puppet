@@ -85,10 +85,12 @@ done;
 done;</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>for file in `find . -name &quot;*.pp&quot;`; do
+      <command># for file in `find . -name &quot;*.pp&quot;`; do
+for file in `realpath $(find ./* -name &apos;*.pp&apos;)`; do
   puppet-lint --no-80chars-check --log-format &quot;%{path}:%{linenumber}:%{check}:%{KIND}:%{message}&quot; $file;
 done;
-exit 0</command>
+exit 0
+</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>## Cleanup old docs.

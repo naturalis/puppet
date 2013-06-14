@@ -25,6 +25,8 @@ class puppetci (
 ) {
   include puppet-lint
 
+  package { 'realpath' }
+
   #For RVM
   package {
     'build-essential':;
