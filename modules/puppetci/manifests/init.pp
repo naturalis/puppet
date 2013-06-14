@@ -3,7 +3,7 @@
 #  Install Jenkins.  Add a job called PuppetCI to statically test puppet code.
 #
 # === Parameters
-#
+# [*readonly*]
 # === Variables
 #
 #
