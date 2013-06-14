@@ -25,7 +25,7 @@ class puppetci (
 ) {
   include puppet-lint
 
-  package { 'realpath' }
+  package { 'realpath': }
 
   #For RVM
   package {
