@@ -28,7 +28,7 @@
       <hudson.plugins.git.UserRemoteConfig>
         <name></name>
         <refspec></refspec>
-        <url>https://github.com/naturalis/puppet.git</url>
+        <url>git://github.com/naturalis/puppet.git</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
@@ -64,19 +64,10 @@
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers class="vector">
-    <com.cloudbees.jenkins.GitHubPushTrigger plugin="github@1.6">
-      <spec></spec>
-    </com.cloudbees.jenkins.GitHubPushTrigger>
-    <org.jenkinsci.plugins.ghprb.GhprbTrigger plugin="ghprb@1.8">
-      <spec>*/5 * * * *</spec>
-      <adminlist>AdminListHere</adminlist>
-      <whitelist></whitelist>
-      <orgslist></orgslist>
-      <cron>*/5 * * * *</cron>
-      <useGitHubHooks>false</useGitHubHooks>
-      <permitAll>false</permitAll>
-      <autoCloseFailedPullRequests>false</autoCloseFailedPullRequests>
-    </org.jenkinsci.plugins.ghprb.GhprbTrigger>
+    <hudson.triggers.SCMTrigger>
+      <spec>H/5 * * * *</spec>
+      <ignorePostCommitHooks>false</ignorePostCommitHooks>
+    </hudson.triggers.SCMTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
