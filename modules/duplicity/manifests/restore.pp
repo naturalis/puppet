@@ -43,13 +43,13 @@ define duplicity::restore(
   }
 
   $_post_command = $post_command ? {
-    undef => '',
-    default => "$post_command && "
+    undef   => '',
+    default => "${post_command} && "
   }
 
   $_encryption = $_pubkey_id ? {
     undef => '--no-encryption',
-    default => "--encrypt-key $_pubkey_id"
+    default => "--encrypt-key ${_pubkey_id}"
   }
 
   if !($_cloud in [ 's3', 'cf' ]) {
@@ -61,20 +61,20 @@ define duplicity::restore(
   }
 
   $_target_url = $_cloud ? {
-    'cf' => "'cf+http://$_bucket'",
-    's3' => "'s3+http://$_bucket/$_folder/$name/'"
+    'cf' => "'cf+http://${_bucket}'",
+    's3' => "'s3+http://${_bucket}/${_folder}/${name}/'"
   }
 
   if (!$_dest_id or !$_dest_key) {
-    fail("You need to set all of your key variables: dest_id, dest_key")
+    fail('You need to set all of your key variables: dest_id, dest_key')
   }
 
   $environment = $_cloud ? {
-    'cf' => ["CLOUDFILES_USERNAME='$_dest_id'", "CLOUDFILES_APIKEY='$_dest_key'", "CLOUDFILES_AUTHURL='https://lon.auth.api.rackspacecloud.com/v1.0'"],
-    's3' => ["AWS_ACCESS_KEY_ID='$_dest_id'", "AWS_SECRET_ACCESS_KEY='$_dest_key'"],
+    'cf' => ["CLOUDFILES_USERNAME='${_dest_id}'", "CLOUDFILES_APIKEY='${_dest_key}'", "CLOUDFILES_AUTHURL='https://lon.auth.api.rackspacecloud.com/v1.0'"],
+    's3' => ["AWS_ACCESS_KEY_ID='${_dest_id}'", "AWS_SECRET_ACCESS_KEY='${_dest_key}'"],
   }
 
-  file { "$name_file_restore.sh":
+  file { "${name_file_restore.sh}":
     path    => '/usr/local/sbin/file-restore.sh',
     content => template('duplicity/file-restore.sh.erb'),
     mode    => '0755',
@@ -82,9 +82,9 @@ define duplicity::restore(
 
   if $_pubkey_id {
     exec { 'duplicity-pgp':
-      command => "gpg --keyserver subkeys.pgp.net --recv-keys $_pubkey_id",
-      path    => "/usr/bin:/usr/sbin:/bin",
-      unless  => "gpg --list-key $_pubkey_id"
+      command => "gpg --keyserver subkeys.pgp.net --recv-keys ${_pubkey_id}",
+      path    => '/usr/bin:/usr/sbin:/bin',
+      unless  => "gpg --list-key ${_pubkey_id}"
     }
   }
 }
