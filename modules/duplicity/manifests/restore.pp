@@ -74,7 +74,7 @@ define duplicity::restore(
     's3' => ["AWS_ACCESS_KEY_ID='$_dest_id'", "AWS_SECRET_ACCESS_KEY='$_dest_key'"],
   }
 
-  file { "$name_file-restore.sh":
+  file { "$name_file_restore.sh":
     path    => '/usr/local/sbin/file-restore.sh',
     content => template('duplicity/file-restore.sh.erb'),
     mode    => '0755',

@@ -64,7 +64,7 @@ class dierendeterminatie (
   # Create mysql server
   include mysql::server
 
-  package { subversion:
+  package { 'subversion':
     ensure => installed,
   }
 
