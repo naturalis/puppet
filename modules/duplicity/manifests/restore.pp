@@ -74,12 +74,6 @@ define duplicity::restore(
     's3' => ["AWS_ACCESS_KEY_ID='${_dest_id}'", "AWS_SECRET_ACCESS_KEY='${_dest_key}'"],
   }
 
-  file { "${name}_file_restore.sh":
-    path    => '/usr/local/sbin/file-restore.sh',
-    content => template('duplicity/file-restore.sh.erb'),
-    mode    => '0755',
-  }
-
   if $_pubkey_id {
     exec { 'duplicity-pgp':
       command => "gpg --keyserver subkeys.pgp.net --recv-keys ${_pubkey_id}",

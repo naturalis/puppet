@@ -36,7 +36,7 @@
 # Copyright 2013 Your name here, unless otherwise noted.
 #
 class dierendeterminatie (
-  $backmeup = true,
+  $backmeup = false,
   $backuphour = 1,
   $backupminute = 1,
   $autorestore = true,
@@ -82,7 +82,6 @@ class dierendeterminatie (
     owner  => 'root',
     group  => 'root',
   }
-
 
   if $backmeup == true {
     class { 'dierendeterminatie::backmeup':
