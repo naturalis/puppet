@@ -56,6 +56,5 @@ class puppetdev {
     command => '/bin/cp /root/puppet/private/scripts/pre-commit /root/puppet/.git/hooks/pre-commit',
     creates => '/root/puppet/.git/hooks/pre-commit',
     require => Vcsrepo[ '/root/puppet'],
-#    require => Class['puppet_lint'],
   }
 }

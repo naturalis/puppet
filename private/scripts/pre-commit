@@ -52,6 +52,17 @@ do
 done
 echo ""
 
+GITUSER=$(git config --get user.name)
+if [[ $GITUSER == "" ]]
+then
+    echo "Please specify a username before commiting code"
+    echo 'git config --global user.name "John Doe"'
+    exit 1
+else
+    echo "Git username: $GITUSER"
+fi
+
+
 if [[ $syntax_is_bad -eq 1 ]]
 then
     echo "FATAL: Syntax is bad. See above errors"
