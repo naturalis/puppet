@@ -55,6 +55,7 @@ class puppetdev {
   exec {'install-pre-commit-hook':
     command => '/bin/cp /root/puppet/private/scripts/pre-commit /root/puppet/.git/hooks/pre-commit',
     creates => '/root/puppet/.git/hooks/pre-commit',
-    require => Class['puppet_lint'],
+    require => Vcsrepo[ '/root/puppet'],
+#    require => Class['puppet_lint'],
   }
 }
