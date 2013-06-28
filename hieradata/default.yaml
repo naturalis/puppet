@@ -32,4 +32,4 @@ monophylizer::config::repo: https://github.com/ncbnaturalis/monophylizer.git
 
 puppetdocu::documentdir: '/etc/puppet/doc'
 
-puppetci::readonly: false
+puppetci::readonly: true
