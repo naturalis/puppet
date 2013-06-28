@@ -91,12 +91,10 @@ for file in $CHANGED_ERB_FILES; do
 done;</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command># CHANGED_PP_FILES=&quot;$(git diff master ${GIT_BRANCH} --name-only --diff-filter=ACMRTUXB | grep &apos;\.pp$&apos; || true)&quot;
-CHANGED_PP_FILES=$(realpath $(git diff master ${GIT_BRANCH} --name-only --diff-filter=ACMRTUXB | grep &apos;\.pp$&apos; | grep &apos;\.pp$&apos; || true ))
-echo $CHANGED_PP_FILES
+      <command>CHANGED_PP_FILES=&quot;$(git diff master ${GIT_BRANCH} --name-only --diff-filter=ACMRTUXB | grep &apos;\.pp$&apos; || true)&quot;
 
 for file in $CHANGED_PP_FILES; do
-  puppet-lint --no-80chars-check --log-format &quot;%{path}:%{linenumber}:%{check}:%{KIND}:%{message}&quot; $file;
+  puppet-lint --no-80chars-check --log-format &quot;%{path}:%{linenumber}:%{check}:%{KIND}:%{message}&quot; $(realpath $file);
 done;
 exit 0</command>
     </hudson.tasks.Shell>
