@@ -7,4 +7,3 @@ class { 'puppetci':
 class { 'puppetci::build':
   stage => post,
 }
-
