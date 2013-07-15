@@ -1,0 +1,3 @@
+[submodule "modules/puppetci"]
+	path = modules/puppetci
+	url = https://github.com/naturalis/puppet-puppetci
