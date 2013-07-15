@@ -34,7 +34,7 @@ fi
 #
 
 mv /etc/puppet /etc/puppet.orig
-env GIT_SSL_NO_VERIFY=true git clone $puppet_source /etc/puppet
+env GIT_SSL_NO_VERIFY=true git clone --recursive $puppet_source /etc/puppet
 
 #
 # Copy meta data to hiera backend directory
