@@ -1,3 +1,6 @@
 [submodule "modules/puppetci"]
 	path = modules/puppetci
 	url = https://github.com/naturalis/puppet-puppetci
+[submodule "modules/base"]
+	path = modules/base
+	url = https://github.com/naturalis/puppet-base.git
