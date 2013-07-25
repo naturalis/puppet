@@ -378,8 +378,11 @@ define puppi::project::maven (
   if ($zip_root != '') {
     puppi::deploy { "${name}-Get_Maven_Files_ZIP":
       priority  => '25' ,
-      command   => 'get_maven_files.sh' ,
-      arguments => $http_password ? { '' => "${source} zipfile" , default => "-u ${http_user} -p ${http_password} ${source} zipfile" } ,
+      command   => 'get_maven_files.sh',
+      arguments => $http_password ? {
+        ''      => "${source} zipfile",
+        default => "-u ${http_user} -p ${http_password} ${source} zipfile"
+      },
       user      => 'root' ,
       project   => $name ,
       enable    => $enable ,
