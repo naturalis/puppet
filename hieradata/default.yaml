@@ -34,6 +34,12 @@ puppetdocu::documentdir: '/etc/puppet/doc'
 
 puppetci::readonly: true
 
+ntp::servers: 
+  - 0.nl.pool.ntp.org
+  - 1.nl.pool.ntp.org
+  - 2.nl.pool.ntp.org
+  - 3.nl.pool.ntp.org
+
 baseusers:
  letmein:
    comment: "Let me In"
