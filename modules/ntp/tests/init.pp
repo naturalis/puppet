@@ -1,4 +1,4 @@
-node default {
+node ntpdefault {
 
   notify { 'enduser-before': }
   notify { 'enduser-after': }
