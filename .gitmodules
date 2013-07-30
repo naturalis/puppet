@@ -4,3 +4,6 @@
 [submodule "modules/base"]
 	path = modules/base
 	url = https://github.com/naturalis/puppet-base.git
+[submodule "modules/dierendeterminatie"]
+	path = modules/dierendeterminatie
+	url = https://github.com/naturalis/puppet-dierendeterminatie.git
