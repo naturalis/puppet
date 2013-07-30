@@ -7,3 +7,6 @@
 [submodule "modules/dierendeterminatie"]
 	path = modules/dierendeterminatie
 	url = https://github.com/naturalis/puppet-dierendeterminatie.git
+[submodule "modules/monophylizer"]
+	path = modules/monophylizer
+	url = https://github.com/naturalis/puppet-monophylizer.git
