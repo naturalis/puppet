@@ -10,3 +10,6 @@
 [submodule "modules/monophylizer"]
 	path = modules/monophylizer
 	url = https://github.com/naturalis/puppet-monophylizer.git
+[submodule "modules/puppetdev"]
+	path = modules/puppetdev
+	url = https://github.com/naturalis/puppet-puppetdev.git
