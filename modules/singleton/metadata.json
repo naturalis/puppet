@@ -1,0 +1,26 @@
+{
+  "name": "pdxcat-singleton",
+  "version": "0.0.4",
+  "source": "git://github.com/pdxcat/puppet-module-singleton",
+  "author": "Reid Vandewiele",
+  "license": "Apache 2.0",
+  "summary": "Singleton Resource Functions for Puppet",
+  "description": "Singleton Resource Functions for Puppet",
+  "project_page": "https://github.com/pdxcat/puppet-module-singleton",
+  "dependencies": [
+
+  ],
+  "types": [
+
+  ],
+  "checksums": {
+    "CHANGELOG": "6699ce3dc033224a4a645999509395d1",
+    "LICENSE": "534946505bbef4fb32c5bd699040d1e4",
+    "Modulefile": "d23474302632b4d65fbebfebc2921a18",
+    "README.md": "49b4e20c545f9eda1ab61a7987275eef",
+    "lib/puppet/parser/functions/singleton_packages.rb": "2c2b3cfb4c24f82a572a8191fa40d767",
+    "lib/puppet/parser/functions/singleton_resources.rb": "9dbed37aafa24e2fe20c9e8f79580477",
+    "manifests/data.pp": "a7bb94ed05c8f098fb4d19423d9ed4be",
+    "manifests/init.pp": "85d88c4f17f9e0709cc2c69adfd7b182"
+  }
+}
