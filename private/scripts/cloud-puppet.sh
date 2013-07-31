@@ -12,6 +12,11 @@ set -e -x
 # 3. Somewhere in the hiera data
 # If there is no role specified, the role 'init' is used.
 
+#
+# Tested on:
+# Ubuntu 12.04-64 'precise'
+# CentOs 6.4-64
+#
 # Usage:
 # Download this script from:
 # https://raw.github.com/naturalis/puppet/master/private/scripts/cloud-puppet.sh
@@ -47,8 +52,6 @@ puppet_source=https://github.com/naturalis/puppet.git
 # Debian like
 if [ -f /usr/bin/dpkg ]
 then
- # wget http://apt.puppetlabs.com/puppetlabs-release-precise.deb
- # dpkg -i puppetlabs-release-precise.deb
   wget http://apt.puppetlabs.com/puppetlabs-release-stable.deb
   dpkg -i puppetlabs-release-stable.deb
   apt-get --yes --quiet update
