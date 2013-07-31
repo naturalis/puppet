@@ -1,12 +1,49 @@
 #!/bin/sh
 set -e -x
 
+# Script to:
+# -Install puppet and git 
+# -Checkout a git repo to the /etc/puppet directory
+# -Apply a 'role', a role is translated to a puppet manifest found in /etc/puppet/manifests/$role.pp
+#
+# The role to be applied can be specified as:
+# 1. A parameter on the commandline
+# 2. As meta data when starting a cloud instance
+# 3. Somewhere in the hiera data
+# If there is no role specified, the role 'init' is used.
+
+# Usage:
+# Download this script from:
+# https://raw.github.com/naturalis/puppet/master/private/scripts/cloud-puppet.sh
+# Make executable
+# chmod +x ./cloud-puppet.sh
+#
+# Deployment examples:
+# 1. Apply the 'puppetdev' manifest on this machine
+# ./cloud-puppet.sh puppetdev
+#
+# 2. Apply the 'puppetci' manifest to a openstack instance
+# nova boot --user-data cloud-puppet.sh --meta role=puppetci --image precise-x86_64 --flavor m1.tiny --key-name mykey puppetdev
+#
+# 3. Apply the 'monophylizer' manifest to a openstack instance using hiera data (edit cloud-data to include your own url).
+# wget https://github.com/naturalis/puppet/raw/master/private/scripts/cloud-data
+# nova boot --user-data cloud-data --meta role=puppetdev --image precise-x86_64 --flavor m1.tiny --key-name mykey puppetdev
+#
+
+# Standard role
 defaultrole=init
+
+# Git repository to clone
 puppet_source=https://github.com/naturalis/puppet.git
 
+#
+# Start of code
+#
 
 #
 # Get latest puppet version
+#
+
 # Debian like
 if [ -f /usr/bin/dpkg ]
 then
@@ -30,28 +67,39 @@ then
 fi
 
 #
+# Move original puppet directory
+#
+if [ -d "/etc/puppet.orig" ]; then
+  rm -rf /etc/puppet.orig
+fi
+mv /etc/puppet /etc/puppet.orig
+
+#
 # Fetch puppet configuration from public git repository.
 #
-
-mv /etc/puppet /etc/puppet.orig
 env GIT_SSL_NO_VERIFY=true git clone --recursive $puppet_source /etc/puppet
 
 #
 # Copy meta data to hiera backend directory
-if [ -f /meta.js  ];
-then
+#
+if [ -f /meta.js  ]; then
    cp /meta.js /etc/puppet/hieradata/cloud-init.json
-else
-   echo "Meta data does not exist."
 fi
 
 #
-# get role from hiera
+# get role from commandline or if absent from hiera
 #
-role="`hiera -c /etc/puppet/hiera.yaml role $defaultrole 2>&1`"
-
+if [ $# -gt 0 ]; then
+  role=$1
+else
+  role="`hiera -c /etc/puppet/hiera.yaml role $defaultrole 2>&1`"
+fi
 #
 # Run puppet.
 #
-
-puppet apply /etc/puppet/manifests/$role.pp
+if [ -f /etc/puppet/manifests/$role.pp  ]; then
+  puppet apply /etc/puppet/manifests/$role.pp
+else
+  echo "/etc/puppet/manifests/$role.pp was not found!"
+  exit 1
+fi
