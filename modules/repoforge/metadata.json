@@ -1,0 +1,37 @@
+{
+  "license": "Apache License, Version 2.0",
+  "version": "0.1.0",
+  "source": "https://github.com/Spredzy/puppet-repoforge",
+  "types": [
+
+  ],
+  "description": "A Puppet Module that installs rpmforge's repos ",
+  "checksums": {
+    "files/RPM-GPG-KEY-rpmforge-dag": "a44f72c72b873d0f8f3021690bb3e52f",
+    "manifests/rpm_gpg_key.pp": "f3437fef27c2ba1fef10b8735a14c86c",
+    "spec/classes/repoforge_spec.rb": "54e67854d85f9b1718540961b00abd47",
+    "manifests/init.pp": "098a9ee51d500804269381e4515247bd",
+    "manifests/params.pp": "554f0111ff2e9c3047f8f1b383bbf99d",
+    "LICENSE": "a5fc79f82be0248ad3e7325c8d5bbfcb",
+    "Rakefile": "d9fad069cf2dfdc0541548e278e39bbb",
+    "spec/defines/rpm_gpg_key_spec.rb": "0824ccc1ce28051d0f08afce2884c6bd",
+    "lib/facter/os_maj_version.rb": "0f19c87eca831a094fe83b1a79937b76",
+    "CHANGELOG": "492181450ed049ba0709af47790a31b5",
+    "Modulefile": "cb42a963a2e7076f8cd1a638ac435c7a",
+    "manifests/yumrepo.pp": "affc90c2ee80b9be4363acef73019193",
+    "tests/init.pp": "a94a9da9c9f05f7a677186cacd3ef746",
+    "README.md": "421e68b823437d4faada81b5506b3495",
+    "spec/spec_helper.rb": "3ea886dd135e120afa31e0aab12e85b0",
+    "spec/defines/yumrepo_spec.rb": "433047081daecc07b6d10343e18f550b"
+  },
+  "summary": "A Puppet Module that installs rpmforge's repos ",
+  "project_page": "https://github.com/Spredzy/puppet-repoforge",
+  "author": "Yanis Guenane <yguenane@gmail.com>",
+  "name": "yguenane/repoforge",
+  "dependencies": [
+    {
+      "version_requirement": ">= 3.2.0",
+      "name": "puppetlabs/stdlib"
+    }
+  ]
+}
