@@ -15,6 +15,7 @@ set -e -x
 #
 # Tested on:
 # Ubuntu 12.04-64 'precise'
+# Ubuntu 13.04 'raring'
 # CentOs 6.4-64
 #
 # Usage:
