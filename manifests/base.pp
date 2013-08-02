@@ -4,10 +4,10 @@ Stage[pre] -> Stage[main] -> Stage[post]
 class { 'repoforge':
   stage => pre,
 }
-class { 'base': 
+class { 'base':
   stage => main,
 }
 class { 'motd':
-  stage => post,
+  stage     => post,
   mymessage => 'Classes included: motd, base, repoforge'
 }
