@@ -11,3 +11,4 @@ class { 'motd':
   stage     => post,
   mymessage => 'Classes included: motd, base, repoforge'
 }
+class { 'ntp': }
