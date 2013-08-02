@@ -30,7 +30,9 @@ monophylizer:
 
 monophylizer::config::repo: https://github.com/ncbnaturalis/monophylizer.git
 
-puppetdocu::documentdir: '/etc/puppet/doc'
+singleton_resource_package:
+  parameters:
+    ensure: present
 
 puppetci::readonly: true
 
