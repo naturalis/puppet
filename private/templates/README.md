@@ -1,7 +1,8 @@
 puppet-monophylizer
 ===================
 
-Puppet module to install the.
+Puppet module to install 
+
 For more information using this tool: 
 
 Parameters
@@ -10,14 +11,10 @@ All parameters are read from hiera
 
 Classes
 -------------
-- class1
-- class2
+- 
 
 Dependencies
 -------------
-- dep1
-- dep2
-- 
 - 
 
 Examples
@@ -33,12 +30,15 @@ class { thisclass: }
 ```
 Result
 -------------
-What is the result?
+
+
 Limitations
 -------------
 This module has been built on and tested against Puppet ... and higher.
 
 The module has been tested on:
+- 
+- 
 
 Authors
 -------------
