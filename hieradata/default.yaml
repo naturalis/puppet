@@ -43,10 +43,10 @@ ntp::servers:
   - 3.nl.pool.ntp.org
 
 baseusers:
- letmein:
-   comment: "Let me In"
+  atze.devries:
+   comment: "Atze"
    shell: "/bin/zsh"
    ssh_key: 
     type: "ssh-rsa"
-    comment: "let@me.in"
-    key: "AAAAB3NzaC1yc2EAAAABIwAAAQEAqnrrjV9ge602ChzGnhNCJDWKp1rI0Zwb64yr8evY5ozINNzyHaWGwp20JRQbPmwhd3TQDPI3hQ48n8fTagCGKRUnim25A9Fmx25viXDA7VjmfmJvC11zZgP+7cGploLcU3aOKABOpNu38tOqcI2oUgyJ9b/H7/re/QT6HutOeLuoKUtctEflWWpYmpYfXlSFrvCmrI11cVLAA6ORuV7HaWitUe6e85bv+Wxu7RICUf4HNjZRJaZdDZkaR55Y+C147qc9VcCJuJFQbOjdhocxr9AJX0ECSeW5aooB3MOvefuCxXSlCgtQTczJhJiXUo97W+/SqzupB57Ju+jnK2XwbQ=="
+    comment: "atze@hal"
+    key: "AAAAB3NzaC1yc2EAAAADAQABAAABAQCsFrALqpPIB00Q9gNbG3U/6zIzdG2ds1OfueQASozze/owocvRyjPL8FUfMzYr6TeU06MbBd6gdGMEa1bmWO2xL5exdBDWy9P30NtwCI2gzYZijOaIH5NBkQBMj0mYaPV/V72SrV7cQ1FMw02LBAq0ewnmcQ6aPNdimHb77X6BjzWOWl5KyGy8vWF0oCKKtG5IoCFNgLslEkj+C5lIyHbybDIp5hOr3DDKov4+jRjJBGlbFgSp0DmCD4iWShIdscKg8hFlmcm1iVEOffdEIY0wRezU+J1YOZAE2bVFDIuopOdzSDr/iX8x3bBpzrDKHaH8VcRPmLpm7ujv/2Vi+QbP"
