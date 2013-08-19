@@ -44,12 +44,12 @@ ntp::servers:
 
 baseusers:
   atze.devries:
-   comment: "Atze"
-   shell: "/bin/zsh"
-   ssh_key: 
-    type: "ssh-rsa"
-    comment: "atze@hal"
-    key: "AAAAB3NzaC1yc2EAAAADAQABAAABAQCsFrALqpPIB00Q9gNbG3U/6zIzdG2ds1OfueQASozze/owocvRyjPL8FUfMzYr6TeU06MbBd6gdGMEa1bmWO2xL5exdBDWy9P30NtwCI2gzYZijOaIH5NBkQBMj0mYaPV/V72SrV7cQ1FMw02LBAq0ewnmcQ6aPNdimHb77X6BjzWOWl5KyGy8vWF0oCKKtG5IoCFNgLslEkj+C5lIyHbybDIp5hOr3DDKov4+jRjJBGlbFgSp0DmCD4iWShIdscKg8hFlmcm1iVEOffdEIY0wRezU+J1YOZAE2bVFDIuopOdzSDr/iX8x3bBpzrDKHaH8VcRPmLpm7ujv/2Vi+QbP"
+    comment: "Atze"
+    shell: "/bin/zsh"
+    ssh_key: 
+      type: "ssh-rsa"
+      comment: "atze@hal"
+      key: "AAAAB3NzaC1yc2EAAAADAQABAAABAQCsFrALqpPIB00Q9gNbG3U/6zIzdG2ds1OfueQASozze/owocvRyjPL8FUfMzYr6TeU06MbBd6gdGMEa1bmWO2xL5exdBDWy9P30NtwCI2gzYZijOaIH5NBkQBMj0mYaPV/V72SrV7cQ1FMw02LBAq0ewnmcQ6aPNdimHb77X6BjzWOWl5KyGy8vWF0oCKKtG5IoCFNgLslEkj+C5lIyHbybDIp5hOr3DDKov4+jRjJBGlbFgSp0DmCD4iWShIdscKg8hFlmcm1iVEOffdEIY0wRezU+J1YOZAE2bVFDIuopOdzSDr/iX8x3bBpzrDKHaH8VcRPmLpm7ujv/2Vi+QbP"
   rudi.broekhuizen:
     comment: "Rudi"
     shell: "/bin/zsh"
@@ -57,3 +57,17 @@ baseusers:
       type: "ssh-rsa"
       comment: "rudi"
       key: "AAAAB3NzaC1yc2EAAAADAQABAAABAQDeRrVuojExYBWgIV7UlLfYLvzGpW9hSzrjl9qJ7Kb3E/x+kq2ruma3LXlvMzFXoCKJMYvqvXUFj2Dzwh+iJ2bCyh5ilWgTMLvAwzRl1LdAV8IbDVYNZGCHCzXkyxLMAEdxXMHVYl6N/q+RBP+HQCySpwOjv86c5PgXoL4BOnxLy5TAoxSsfvxRcHT42ThYK1C/R5QC8UoBdpJ1RBhQRjBJPMWp9zRyOafNwE7Iti15gKHp04bn9UGqHRTA1ul+Q6YEFzjoqUxe4VCHObM6BS/DpD++TPMXjzU+aeJ8tkxhmYkGRKYJx/KK3uaKPv+/EkODePvwTVshiQ8v9qOXx0YJ"
+  david.heijkamp:
+    comment: "David Heijkamp"
+    shell: "/bin/zsh"
+    ssh_key:
+      type: "ssh-rsa"
+      comment: "kitamozihr@skootrekenaar"
+      key: "AAAAB3NzaC1yc2EAAAADAQABAAABAQDXGplrKtQ30nhhpkKECjb5WGLhPDwGEMI+xqGYYQZdc+/XO77gpF8s9FI8F40dC+n2dIlVQqVQ6AmDSec7ZeWljN9QrWFlf/tcEcItQ20WHNYxuMpewO8KwhLpQpxsGiRBC+t6cXKUpGImiMIZTdjou1iH2m40EFUEhhMpyqZblhXBSU8QaABne5WANM5LNeLMqDKgrEuwmtUAow54b4VfLH92WG4rH35XhvSYH9Ty9xBG1ks3Jg3WkueLmxiWtRq4mzeBos7MXeN8x4WOqmzieqK7IMI9taTZG2atEGSf8DRaDKsSMt9eVV+r1RfRgpokrRgxVHX0KTsLonH1i3+h"
+  hugo.vanduijn:
+    comment: "Hugo van Duijn"
+    shell: "/bin/zsh"
+    ssh_key:
+      type: "ssh-rsa"
+      comment: "hugo.vanduijn@naturalis.nl"
+      key: "AAAAB3NzaC1yc2EAAAABJQAAAIEAmdU9//WJ4BqGWoH1TW3VmRnIcTbCaog38evKayf6hNe/jBuLRU9/MjDLsd3CfiLXVMKmMPOaGiovXQ5r4R0sSq9GknZU+SBB1oYLQUDi/+XseJG1dnTucDQ/Gz5gyV1QvWf86aaT7169qRCy7iWRIoRYaua/R3HIpWMXrNlzL/0="      
