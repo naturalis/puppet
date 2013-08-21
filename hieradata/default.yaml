@@ -13,7 +13,7 @@ dierendeterminatie::autorestore: true
 dierendeterminatie::restoreversion: 'latest'
 dierendeterminatie::dest_id: 'provider_id'
 dierendeterminatie::dest_key: 'provider_key'
-dierendeterminatie::coderepo: 'http://dieren-code.googlecode.com/svn/trunk/'
+dierendeterminatie::coderepo: 'svn://dev2.etibioinformatics.nl/linnaeus_ng/trunk'
 dierendeterminatie::repotype: 'svn'
 dierendeterminatie::coderoot: '/var/www/dierendeterminatie'
 
