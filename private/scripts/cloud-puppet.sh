@@ -29,11 +29,14 @@ set -e -x
 # ./cloud-puppet.sh puppetdev
 #
 # 2. Apply the 'puppetci' manifest to a openstack instance
-# nova boot --user-data cloud-puppet.sh --meta role=puppetci --image precise-x86_64 --flavor m1.tiny --key-name mykey puppetdev
+# nova boot --user-data cloud-puppet.sh --meta role=puppetci --image precise-x86_64 --flavor m1.tiny --key-name mykey puppetci
 #
 # 3. Apply the 'monophylizer' manifest to a openstack instance using hiera data (edit cloud-data to include your own url).
 # wget https://github.com/naturalis/puppet/raw/master/private/scripts/cloud-data
-# nova boot --user-data cloud-data --meta role=puppetdev --image precise-x86_64 --flavor m1.tiny --key-name mykey puppetdev
+# nova boot --user-data cloud-data --meta role=monophylizer --image precise-x86_64 --flavor m1.tiny --key-name mykey monophylizer
+#
+# 4. Apply the 'monophylizer' manifest to a openstack instance using user provided hiera datafile (user-data.yaml).
+# nova boot --user-data cloud-data --meta role=monophylizer --image precise-x86_64 --flavor m1.tiny --key-name mykey --file user-data.yaml=/user-data.yaml monophylizer
 #
 
 # Standard role
@@ -86,9 +89,15 @@ env GIT_SSL_NO_VERIFY=true git clone --recursive $puppet_source /etc/puppet
 #
 # Copy meta data to hiera backend directory
 #
+# cloud-init json file
 if [ -f /meta.js  ]; then
    cp /meta.js /etc/puppet/hieradata/cloud-init.json
 fi
+# user-data yaml file
+if [ -f /user-data.yaml  ]; then
+   cp /user-data.yaml /etc/puppet/hieradata/user-data.yaml
+fi
+
 
 #
 # get role from commandline or if absent from hiera
