@@ -9,6 +9,7 @@ dierendeterminatie::backmeup: true
 dierendeterminatie::backuphour: 2
 dierendeterminatie::backupminute: 2
 dierendeterminatie::backupdir: '/tmp/backups'
+dierendeterminatie::bucket: 'dierendeterminatie'
 dierendeterminatie::autorestore: true
 dierendeterminatie::restoreversion: 'latest'
 dierendeterminatie::dest_id: 'provider_id'
