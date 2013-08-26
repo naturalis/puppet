@@ -1,0 +1,9 @@
+<% @environment .each do |key,value| -%>
+<%= key %>
+<% end -%>
+
+<%= @_pre_command -%>
+duplicity restore --s3-use-new-style --s3-european-buckets --file-to-restore <%= @filetorestore -%> <%= @_encryption -%> <%= @_target_url -%> <%= @restore_directory -%> > /tmp/restorelog.txt
+
+
+<%= @_post_command -%>   
