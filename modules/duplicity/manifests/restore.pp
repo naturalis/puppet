@@ -44,7 +44,7 @@ define duplicity::restore(
 
   $_post_command = $post_command ? {
     undef   => '',
-    default => "${post_command} && "
+    default => "${post_command}"
   }
 
   $_encryption = $_pubkey_id ? {
@@ -70,8 +70,8 @@ define duplicity::restore(
   }
 
   $environment = $_cloud ? {
-    'cf' => ["CLOUDFILES_USERNAME='${_dest_id}'", "CLOUDFILES_APIKEY='${_dest_key}'", "CLOUDFILES_AUTHURL='https://lon.auth.api.rackspacecloud.com/v1.0'"],
-    's3' => ["AWS_ACCESS_KEY_ID='${_dest_id}'", "AWS_SECRET_ACCESS_KEY='${_dest_key}'"],
+    'cf' => ["export CLOUDFILES_USERNAME='${_dest_id}'", "export CLOUDFILES_APIKEY='${_dest_key}'", "export CLOUDFILES_AUTHURL='https://lon.auth.api.rackspacecloud.com/v1.0'"],
+    's3' => ["export AWS_ACCESS_KEY_ID='${_dest_id}'", "export AWS_SECRET_ACCESS_KEY='${_dest_key}'"],
   }
 
   if $_pubkey_id {
@@ -81,4 +81,14 @@ define duplicity::restore(
       unless  => "gpg --list-key ${_pubkey_id}"
     }
   }
+  
+  $filetorestore = 'tmp/backups'
+  file { "/usr/local/sbin/duplicityrestore.sh":
+    content => template('duplicity/duplicityrestore.sh.erb'),
+    mode    => '0755',
+  }
+
+
+
+
 }

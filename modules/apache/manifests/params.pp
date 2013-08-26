@@ -10,6 +10,7 @@
 # - The $php_package is the name of the package that provided PHP
 # - The $ssl_package is the name of the Apache SSL package
 # - The $apache_dev is the name of the Apache development libraries package
+# - The $conf_contents is the contents of the Apache configuration file
 #
 # Actions:
 #
@@ -18,11 +19,17 @@
 # Sample Usage:
 #
 class apache::params {
-  # This will be 5 or 6 on RedHat, 6 or wheezy on Debian, 12 or quantal on Ubuntu, etc.
+  # This will be 5 or 6 on RedHat, 6 or wheezy on Debian, 12 or quantal on Ubuntu, 3 on Amazon, etc.
   $osr_array = split($::operatingsystemrelease,'[\/\.]')
   $distrelease = $osr_array[0]
   if ! $distrelease {
     fail("Class['apache::params']: Unparsable \$::operatingsystemrelease: ${::operatingsystemrelease}")
+  }
+
+  if($::fqdn) {
+    $servername = $::fqdn
+  } else {
+    $servername = $::hostname
   }
 
   if $::osfamily == 'RedHat' or $::operatingsystem == 'amazon' {
@@ -43,8 +50,8 @@ class apache::params {
     $default_ssl_cert     = '/etc/pki/tls/certs/localhost.crt'
     $default_ssl_key      = '/etc/pki/tls/private/localhost.key'
     $ssl_certs_dir        = $distrelease ? {
-      '5' => '/etc/pki/tls/certs',
-      '6' => '/etc/ssl/certs',
+      '5'     => '/etc/pki/tls/certs',
+      default => '/etc/ssl/certs',
     }
     $passenger_root       = '/usr/share/rubygems/gems/passenger-3.0.17'
     $passenger_ruby       = '/usr/bin/ruby'
@@ -53,29 +60,34 @@ class apache::params {
       'fcgid'      => 'mod_fcgid',
       'passenger'  => 'mod_passenger',
       'perl'       => 'mod_perl',
+      'php5'       => $distrelease ? {
+        '5'     => 'php53',
+        default => 'php',
+      },
       'proxy_html' => 'mod_proxy_html',
       'python'     => 'mod_python',
       'shibboleth' => 'shibboleth',
       'ssl'        => 'mod_ssl',
       'wsgi'       => 'mod_wsgi',
-    }
-    $mod_packages['php5'] = $distrelease ? {
-      '5' => 'php53',
-      '6' => 'php',
+      'dav_svn'    => 'mod_dav_svn',
+      'xsendfile'  => 'mod_xsendfile',
     }
     $mod_libs             = {
       'php5' => 'libphp5.so',
     }
+    $conf_template        = 'apache/httpd.conf.erb'
+    $keepalive            = 'Off'
   } elsif $::osfamily == 'Debian' {
     $user             = 'www-data'
     $group            = 'www-data'
     $apache_name      = 'apache2'
     $httpd_dir        = '/etc/apache2'
-    $conf_dir         = "${httpd_dir}"
+    $conf_dir         = $httpd_dir
     $confd_dir        = "${httpd_dir}/conf.d"
     $mod_dir          = "${httpd_dir}/mods-available"
     $mod_enable_dir   = "${httpd_dir}/mods-enabled"
-    $vhost_dir        = "${httpd_dir}/sites-enabled"
+    $vhost_dir        = "${httpd_dir}/sites-available"
+    $vhost_enable_dir = "${httpd_dir}/sites-enabled"
     $conf_file        = 'apache2.conf'
     $ports_file       = "${conf_dir}/ports.conf"
     $logroot          = '/var/log/apache2'
@@ -96,8 +108,14 @@ class apache::params {
       'proxy_html' => 'libapache2-mod-proxy-html',
       'python'     => 'libapache2-mod-python',
       'wsgi'       => 'libapache2-mod-wsgi',
+      'dav_svn'    => 'libapache2-svn',
+      'xsendfile'  => 'libapache2-mod-xsendfile',
     }
-    $mod_libs         = {}
+    $mod_libs         = {
+      'php5' => 'libphp5.so',
+    }
+    $conf_template    = 'apache/httpd.conf.erb'
+    $keepalive        = 'Off'
   } else {
     fail("Class['apache::params']: Unsupported osfamily: ${::osfamily}")
   }

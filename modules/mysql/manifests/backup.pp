@@ -55,4 +55,13 @@ class mysql::backup (
     group   => 'root',
     content => template('mysql/mysqlbackup.sh.erb'),
   }
+
+  file { 'mysqlrestore.sh':
+    ensure  => $ensure,
+    path    => '/usr/local/sbin/mysqlrestore.sh',
+    mode    => '0700',
+    owner   => 'root',
+    group   => 'root',
+    content => template('mysql/mysqlrestore.sh.erb'),
+  }
 }

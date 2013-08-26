@@ -84,7 +84,6 @@ describe 'apache', :type => :class do
       'mime',
       'negotiation',
       'setenvif',
-      'status',
     ].each do |modname|
       it { should contain_file("#{modname}.load").with(
         'path'   => "/etc/apache2/mods-available/#{modname}.load",
@@ -187,7 +186,6 @@ describe 'apache', :type => :class do
         'mime',
         'negotiation',
         'setenvif',
-        'status',
       ].each do |modname|
         it { should contain_file("#{modname}.load").with_path(
           "/etc/httpd/mod.d/#{modname}.load"
@@ -246,6 +244,32 @@ describe 'apache', :type => :class do
           { :mpm_module => 'breakme' }
         end
         it { expect { should contain_class('apache::params') }.to raise_error Puppet::Error, /does not match/ }
+      end
+    end
+
+    describe "different templates for httpd.conf" do
+      context "with default" do
+        let :params do
+          { :conf_template => 'apache/httpd.conf.erb' }
+        end
+        it { should contain_file("/etc/httpd/conf/httpd.conf").with_content %r{^# Security\n} }
+      end
+      context "with non-default" do
+        let :params do
+          { :conf_template => 'site_apache/fake.conf.erb' }
+        end
+        it { should contain_file("/etc/httpd/conf/httpd.conf").with_content %r{^Fake template for rspec.$} }
+      end
+    end
+
+    describe "default mods" do
+      context "without" do
+        let :params do
+          { :default_mods => false }
+        end
+
+        it { should contain_apache__mod('authz_host') }
+        it { should_not contain_apache__mod('env') }
       end
     end
   end

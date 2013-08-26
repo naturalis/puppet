@@ -1,6 +1,6 @@
 class apache::mod::dav_fs {
   $dav_lock = $::osfamily ? {
-    'debian' => "${APACHE_LOCK_DIR}/DAVLock",
+    'debian' => '${APACHE_LOCK_DIR}/DAVLock',
     default  => '/var/lib/dav/lockdb',
   }
 
@@ -11,6 +11,9 @@ class apache::mod::dav_fs {
   file { 'dav_fs.conf':
     ensure  => file,
     path    => "${apache::mod_dir}/dav_fs.conf",
-    content => template('apache/mod/php.conf.erb'),
+    content => template('apache/mod/dav_fs.conf.erb'),
+    require => Exec["mkdir ${apache::mod_dir}"],
+    before  => File[$apache::mod_dir],
+    notify  => Service['httpd'],
   }
 }
