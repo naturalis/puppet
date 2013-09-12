@@ -13,3 +13,9 @@
 [submodule "modules/puppetdev"]
 	path = modules/puppetdev
 	url = https://github.com/naturalis/puppet-puppetdev.git
+[submodule "puppet-ftpserver"]
+	path = puppet-ftpserver
+	url = https://github.com/naturalis/puppet-ftpserver
+[submodule "modules/ftpserver"]
+	path = modules/ftpserver
+	url = https://github.com/naturalis/puppet-ftpserver.git
