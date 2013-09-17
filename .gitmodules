@@ -19,3 +19,6 @@
 [submodule "modules/ftpserver"]
 	path = modules/ftpserver
 	url = https://github.com/naturalis/puppet-ftpserver.git
+[submodule "modules/vsftpd"]
+	path = modules/vsftpd
+	url = https://github.com/thias/puppet-vsftpd.git
