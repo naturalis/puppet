@@ -1,3 +1,13 @@
+ftpserver::ftpd_banner: 'FTP Server'
+ftpserver::users:
+  user1:
+    comment: "FTP User 1"
+    home: "/data/ftp/user1"
+    password: "$1$hGAo41XE$y.BLWugfVr1.mLvkuLbRN/"
+  user2:
+    comment: "FTP User 2"
+    home: "/data/ftp/user2"
+    password: "$1$hGAo41XE$y.BLWugfVr1.mLvkuLbRN/"
 dierendeterminatie:
   dierendeterminatie.cloud.naturalis.nl:
     serveraliases: '*.cloud.naturalis.nl'
