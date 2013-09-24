@@ -7,7 +7,7 @@ class duplicity::packages {
         owner => root, 
         group => root, 
         mode => 0444,
-        source => "puppet:///modules/duplicitystandalone/RPM-GPG-KEY-EPEL6"
+        source => "puppet:///modules/duplicity/RPM-GPG-KEY-EPEL6"
       }
     
       yumrepo { "epel":
