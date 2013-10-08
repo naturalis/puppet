@@ -25,3 +25,6 @@
 [submodule "modules/lianasofguyana"]
 	path = modules/lianasofguyana
 	url = https://github.com/naturalis/puppet-lianas-of-guyana.org.git
+[submodule "modules/sensu"]
+	path = modules/sensu
+	url = https://github.com/sensu/sensu-puppet

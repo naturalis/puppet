@@ -1,0 +1,33 @@
+{
+  "dependencies": [
+
+  ],
+  "types": [
+
+  ],
+  "summary": "Redis Module",
+  "source": "git@github.com:jbussdieker/puppet-redis.git",
+  "description": "UNKNOWN",
+  "author": "Joshua B. Bussdieker",
+  "license": "Apache License, Version 2.0",
+  "project_page": "UNKNOWN",
+  "version": "0.0.2",
+  "name": "jbussdieker-redis",
+  "checksums": {
+    "spec/fixtures/manifests/site.pp": "d41d8cd98f00b204e9800998ecf8427e",
+    "manifests/init.pp": "9bdca76927334e9a01dc0920c4aaded1",
+    "Modulefile": "cad79376af5e492f8e01f211cd8929f1",
+    "spec/classes/service_spec.rb": "78c33f1995eba37abc5d96823ab84e73",
+    "manifests/service.pp": "e132594402e3b215e4f33d7e716a200c",
+    "README.md": "6d6a0f785ffe076caf047eef1ac76cdf",
+    "Gemfile.lock": "816c37cb72e123ae47c232b38c6bd687",
+    "manifests/config.pp": "a6e74da83d2039dbf327f07d618a3ef3",
+    "spec/spec_helper.rb": "792eeb7aa7edafb93e2bc1d27c5e75c5",
+    "Rakefile": "f39450f89f23380c06f6d6a36d0ec017",
+    "templates/redis.conf.erb": "ccc025e624944805b83e03eafe737085",
+    "spec/classes/package_spec.rb": "c8cf026aed0b2b155d0eaa6ee01fb2fe",
+    "Gemfile": "cdacae4cd0359dd45be29b21fc86698b",
+    "spec/classes/config_spec.rb": "6eab54a9a9e8c1b75246bfd281f3a70a",
+    "manifests/package.pp": "44aac10dc286d76ae95b6d1481ebb3ef"
+  }
+}
