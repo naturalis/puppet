@@ -22,3 +22,6 @@
 [submodule "modules/lemmus"]
 	path = modules/lemmus
 	url = https://github.com/naturalis/puppet-lemmus.git
+[submodule "modules/lianasofguyana"]
+	path = modules/lianasofguyana
+	url = https://github.com/naturalis/puppet-lianas-of-guyana.org.git
