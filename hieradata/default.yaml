@@ -1,3 +1,22 @@
+rabbitmq::default_user: 'admin'
+rabbitmq::default_pass: 'admin'
+rabbitmq::vhost:
+  /sensu:
+    provider: 'rabbitmqctl'
+    
+rabbitmq::user:
+  sensu:
+    provider: 'rabbitmqctl'
+    password: 'sensu'
+    admin: true
+
+rabbitmq::user_permissions:
+  sensu@/sensu:
+    configure_permission: '.*'
+    read_permission: '.*'
+    write_permission: '.*'
+    provider: 'rabbitmqctl'
+
 ftpserver::ftpd_banner: 'FTP Server'
 ftpserver::users:
   user1:
