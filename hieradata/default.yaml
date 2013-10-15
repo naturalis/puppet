@@ -66,7 +66,7 @@ singleton_resource_package:
 
 puppetci::readonly: true
 
-ntp::servers: 
+ntp::servers:
   - 0.nl.pool.ntp.org
   - 1.nl.pool.ntp.org
   - 2.nl.pool.ntp.org
@@ -76,7 +76,7 @@ baseusers:
   atze.devries:
     comment: "Atze"
     shell: "/bin/zsh"
-    ssh_key: 
+    ssh_key:
       type: "ssh-rsa"
       comment: "atze@hal"
       key: "AAAAB3NzaC1yc2EAAAADAQABAAABAQCsFrALqpPIB00Q9gNbG3U/6zIzdG2ds1OfueQASozze/owocvRyjPL8FUfMzYr6TeU06MbBd6gdGMEa1bmWO2xL5exdBDWy9P30NtwCI2gzYZijOaIH5NBkQBMj0mYaPV/V72SrV7cQ1FMw02LBAq0ewnmcQ6aPNdimHb77X6BjzWOWl5KyGy8vWF0oCKKtG5IoCFNgLslEkj+C5lIyHbybDIp5hOr3DDKov4+jRjJBGlbFgSp0DmCD4iWShIdscKg8hFlmcm1iVEOffdEIY0wRezU+J1YOZAE2bVFDIuopOdzSDr/iX8x3bBpzrDKHaH8VcRPmLpm7ujv/2Vi+QbP"
@@ -100,4 +100,6 @@ baseusers:
     ssh_key:
       type: "ssh-rsa"
       comment: "hugo.vanduijn@naturalis.nl"
-      key: "AAAAB3NzaC1yc2EAAAABJQAAAIEAmdU9//WJ4BqGWoH1TW3VmRnIcTbCaog38evKayf6hNe/jBuLRU9/MjDLsd3CfiLXVMKmMPOaGiovXQ5r4R0sSq9GknZU+SBB1oYLQUDi/+XseJG1dnTucDQ/Gz5gyV1QvWf86aaT7169qRCy7iWRIoRYaua/R3HIpWMXrNlzL/0="      
+      key: "AAAAB3NzaC1yc2EAAAABJQAAAIEAmdU9//WJ4BqGWoH1TW3VmRnIcTbCaog38evKayf6hNe/jBuLRU9/MjDLsd3CfiLXVMKmMPOaGiovXQ5r4R0sSq9GknZU+SBB1oYLQUDi/+XseJG1dnTucDQ/Gz5gyV1QvWf86aaT7169qRCy7iWRIoRYaua/R3HIpWMXrNlzL/0="
+
+
