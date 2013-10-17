@@ -28,3 +28,6 @@
 [submodule "modules/sensu"]
 	path = modules/sensu
 	url = https://github.com/sensu/sensu-puppet
+[submodule "modules/hermannherbarium"]
+	path = modules/hermannherbarium
+	url = https://github.com/naturalis/puppet-hermann-herbarium.nl.git
