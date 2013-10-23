@@ -29,14 +29,14 @@ ftpserver::users:
     password: "$1$hGAo41XE$y.BLWugfVr1.mLvkuLbRN/"
 
 
-hermannherbarium:
-  www.hermann-herbarium.nl:
-    serveraliases: 'hermann-herbarium.org'
-    docroot: /var/www/hermannherbarium
-    port: 80
-    ssl: no
-    priority: 10
-    serveradmin: bestaatniet@naturalis.nl
+#hermannherbarium:
+#  www.hermann-herbarium.nl:
+#    serveraliases: 'hermann-herbarium.org'
+#    docroot: /var/www/hermannherbarium
+#    port: 80
+#    ssl: no
+#    priority: 10
+#    serveradmin: bestaatniet@naturalis.nl
 
 lianasofguyana:
   www.lianas-of-guyana.org:
