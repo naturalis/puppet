@@ -27,6 +27,26 @@ ftpserver::users:
     comment: "FTP User 2"
     home: "/data/ftp/user2"
     password: "$1$hGAo41XE$y.BLWugfVr1.mLvkuLbRN/"
+
+
+hermannherbarium:
+  www.hermann-herbarium.nl:
+    serveraliases: 'hermann-herbarium.org'
+    docroot: /var/www/hermannherbarium
+    port: 80
+    ssl: no
+    priority: 10
+    serveradmin: bestaatniet@naturalis.nl
+
+lianasofguyana:
+  www.lianas-of-guyana.org:
+    serveraliases: 'lianas-org-guyana.org'
+    docroot: /var/www/lianasofguyana
+    port: 80
+    ssl: no
+    priority: 10
+    serveradmin: bestaatniet@naturalis.nl
+
 dierendeterminatie:
   dierendeterminatie.cloud.naturalis.nl:
     serveraliases: '*.cloud.naturalis.nl'
@@ -46,6 +66,8 @@ dierendeterminatie::dest_key: 'provider_key'
 dierendeterminatie::coderepo: 'svn://dev2.etibioinformatics.nl/linnaeus_ng/trunk'
 dierendeterminatie::repotype: 'svn'
 dierendeterminatie::coderoot: '/var/www/dierendeterminatie'
+
+
 
 mysql::config::default_engine: myisam
 
