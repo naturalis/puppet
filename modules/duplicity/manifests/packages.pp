@@ -18,7 +18,7 @@ class duplicity::packages {
         require => File["/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL6"]
       }
       
-      package {['python-boto','perl-GnuPG','python-cloudfiles','ruby-augeas','PackageKit-cron','duplicity','s3cmd']: 
+      package {['python-boto','python-cloudfiles','ruby-augeas','PackageKit-cron','duplicity','s3cmd']: 
           ensure 	=> present,
           require    	=> Yumrepo['epel'],
       }
