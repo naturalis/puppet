@@ -1,0 +1,53 @@
+{
+  "name": "example42-tomcat",
+  "version": "2.1.3",
+  "summary": "Puppet module for tomcat",
+  "author": "Alessandro Franceschi",
+  "description": "This module installs and manages tomcat. Check README.rdoc for details. Puppi is required for some common functions: you can install them without using the whole module. Monitor and firewall dependencies are needed only if the relevant features are enabled",
+  "dependencies": [
+    {
+      "name": "example42/puppi",
+      "version_requirement": ">=2.0.0"
+    }
+  ],
+  "types": [
+
+  ],
+  "checksums": {
+    "LICENSE": "a300b604c66de62cf6e923cca89c9d83",
+    "Modulefile": "099306fd26e3f0843978dd0276d11795",
+    "README.md": "70cf010bce349b0e53d637c745303246",
+    "Rakefile": "e90d68823ff237c89224eb139f8926ad",
+    "manifests/init.pp": "ecfdba257b785eab0de363e25d2cc396",
+    "manifests/instance.pp": "8190ff16b55b6bd6b4113754804916fd",
+    "manifests/manager.pp": "642e30888f0551835d88a5b3975041c9",
+    "manifests/mod_jk.pp": "cc3868f304b53db34987d353cd87c2c5",
+    "manifests/params.pp": "42ca0ce50502b262af4c9589bca4115d",
+    "manifests/puppi/instance.pp": "b39f3dd8593786ba1c12ab4562e0a5d4",
+    "manifests/spec.pp": "fb8da89e4dc2c045a26eaaff1cc24496",
+    "manifests/users.pp": "592e2b061fc07c228fd0bec1499ef944",
+    "spec/classes/tomcat_spec.rb": "ec43bb05ac334a6fec20a992d74ec713",
+    "spec/spec_helper.rb": "0db89c9a486df193c0e40095422e19dc",
+    "templates/apache/vhost.conf.erb": "e0cf7904da950e898ddbc95247955833",
+    "templates/instance/defaults6-Debian.erb": "e5314f598e22e32372d1345d62d7926b",
+    "templates/instance/defaults6-RedHat.erb": "dd972004e3891dd401a7cde2ab4c26aa",
+    "templates/instance/defaults7-Debian.erb": "2ebb22dda300104c1f75ac60955b6872",
+    "templates/instance/init6-Debian.erb": "32d523b7413fc7ba4d1589e40996bd24",
+    "templates/instance/init6-RedHat.erb": "a08862b6e9c83e5bc3c09783fbb75e38",
+    "templates/instance/init7-Debian.erb": "234975f773ad9818a098d6c7a20bb516",
+    "templates/instance/manager.xml.erb": "b73ff5a7009ff0f8ace398353e43dc5f",
+    "templates/instance/params.erb": "fb8c547ac9528cedd142267480dbcec1",
+    "templates/instance/setenv.sh.erb": "41b2affa3302f4f44a3ceba0be3a93bc",
+    "templates/instance/shutdown.sh.erb": "d93dae6a420f822f38eddada84394937",
+    "templates/instance/startup.sh.erb": "15fbcd92c6f1b2ad9774ec981b7bcd1e",
+    "templates/instance/tomcat-instance-create.erb": "7d048a89c1906ce7cff33b5ad0240895",
+    "templates/instance/tomcat-users.xml.erb": "c1a28799212d9ac2e13606ffe5f28015",
+    "templates/modjk.worker.properties": "9866f2f72189f117b618a30429c50c22",
+    "templates/modjk.workers.properties": "9b776cf0bc750a2efdfd365b0261dee3",
+    "templates/puppi/instance.erb": "cd0649ada042700d51f0a29c301d94a1",
+    "templates/spec.erb": "95554a191230174b3ba5942f8d8d5b1e"
+  },
+  "source": "https://github.com/example42/puppet-tomcat",
+  "project_page": "http://www.example42.com",
+  "license": "Apache2"
+}
