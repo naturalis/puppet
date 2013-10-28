@@ -31,3 +31,6 @@
 [submodule "modules/hermannherbarium"]
 	path = modules/hermannherbarium
 	url = https://github.com/naturalis/puppet-hermann-herbarium.nl.git
+[submodule "modules/ipt-toolkit"]
+	path = modules/ipt-toolkit
+	url = https://github.com/naturalis/puppet-ipt-toolkit.git
