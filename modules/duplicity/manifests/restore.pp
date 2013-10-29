@@ -7,6 +7,7 @@ define duplicity::restore(
   $cloud = undef,
   $pubkey_id = undef,
   $post_command = undef,
+  $filetorestore = 'tmp/backups',
 ) {
 
   include duplicity::params
@@ -82,7 +83,6 @@ define duplicity::restore(
     }
   }
   
-  $filetorestore = 'tmp/backups'
   file { "/usr/local/sbin/duplicityrestore.sh":
     content => template('duplicity/duplicityrestore.sh.erb'),
     mode    => '0755',

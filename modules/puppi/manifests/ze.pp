@@ -29,7 +29,7 @@ define puppi::ze (
     mode    => '0644',
     owner   => $puppi::params::configfile_owner,
     group   => $puppi::params::configfile_group,
-    content => inline_template("<%= Hash[variables.sort].reject{ |k,v| k.to_s =~ /(${filter})/ }.to_yaml %>\n"),
+    content => inline_template("<%= Hash[@variables.sort].reject{ |k,v| k.to_s =~ /(${filter})/ }.to_yaml %>\n"),
   }
 
 }

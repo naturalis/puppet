@@ -39,7 +39,8 @@ class tomcat::params {
   }
 
   # Todo: What to do when $pkgver = 'tomcat' without any number?
-  $version = inline_template("<%= '${pkgver}'.scan(/\d/).first %>")
+  # $version = inline_template("<%= '${pkgver}'.scan(/\d/).first %>")
+  $version = inline_template("<%= '${pkgver}'.scan(/\\d/).first %>")
 
   ### Application related parameters
   $manager_package = $::operatingsystem ? {
