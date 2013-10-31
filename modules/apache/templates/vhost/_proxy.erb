@@ -19,3 +19,9 @@
   ProxyPassReverse / <%= @proxy_dest %>/
   ProxyPreserveHost On
 <% end -%>
+<% if @proxy_pass_preserve_host -%>
+  ProxyPreserveHost On
+<% end -%>
+<% Array(@proxy_pass_reverse_cookie_path).each do |proxy| %>
+  ProxyPassReverseCookiePath <%= proxy['url'] %> <%= proxy['path'] %>
+<% end -%>

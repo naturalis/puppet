@@ -95,6 +95,8 @@ define apache::vhost(
     $scriptalias        = undef,
     $proxy_dest         = undef,
     $proxy_pass         = undef,
+    $proxy_pass_preserve_host = undef,
+    $proxy_pass_reverse_cookie_path = undef,
     $sslproxyengine     = false,
     $no_proxy_uris      = [],
     $redirect_source    = '/',
