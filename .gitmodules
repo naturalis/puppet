@@ -36,7 +36,7 @@
 	url = https://github.com/naturalis/puppet-ipt-toolkit.git
 [submodule "modules/sensuclient"]
 	path = modules/sensuclient
-	url = https://github.com/naturalis/puppet-sensuclient
+	url = https://github.com/naturalis/puppet-sensuclient.git
 [submodule "modules/medialibrary"]
 	path = modules/medialibrary
 	url = https://github.com/naturalis/puppet-medialibrary
