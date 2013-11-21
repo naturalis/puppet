@@ -1,0 +1,123 @@
+{
+  "checksums": {
+    "lib/puppet/provider/concat_build/build.rb": "5b4dccb7598e58de5ea5c0d293b69ac7",
+    "lib/puppet/type/concat_build.rb": "5b9677fa2542acc05c2e555628cb5ebd",
+    "lib/puppet/type/concat_fragment.rb": "16ae917a25ae2eac926462606db9418c",
+    "README.md": "e57836fea75c8d4fe227cbab3180fff5",
+    "COPYING": "2a944942e1496af1886903d274dedb13",
+    "lib/puppet/provider/concat_fragment/fragment.rb": "a70e7714c8d1a534275690c6d41061cc",
+    "lib/puppet/parser/functions/fragmentdir.rb": "8f03c227227a51d39d79d7eb3531a62c",
+    "Modulefile": "3b2a55a3373080c34eca9b13a229da2e",
+    "LICENSE": "2a41a8cc82d57a8f9882be35b81a5378",
+    "lib/puppet/parser/functions/concat_output.rb": "8a7f6cac559952e200bb43ef785933f1"
+  },
+  "types": [
+    {
+      "providers": [
+        {
+          "doc": "concat_build provider",
+          "name": "concat_build"
+        }
+      ],
+      "parameters": [
+        {
+          "doc": "",
+          "name": "name"
+        },
+        {
+          "doc": "If a line begins with the specified string it will not be printed in the output file.",
+          "name": "clean_comments"
+        },
+        {
+          "doc": "Cleans whitespace.  Can be passed an array.  'lines' will cause the \n          output to not contain any blank lines. 'all' is equivalent to \n          [leading, trailing, lines]  Valid values are `leading`, `trailing`, `lines`, `all`, `none`.",
+          "name": "clean_whitespace"
+        },
+        {
+          "doc": "Acts as the delimiter between concatenated file fragments. For\n          instance, if you have two files with contents 'foo' and 'bar', the\n          result with a file_delimiter of ':' will be a file containing\n          'foo:bar'.",
+          "name": "file_delimiter"
+        },
+        {
+          "doc": "Whether or not to automatically append a newline to the file\n          delimiter.  For example, with no file_delimiter and\n          'append_newline => false' the fragments will all wind up on the same\n          line.  Valid values are `true`, `false`.",
+          "name": "append_newline"
+        },
+        {
+          "doc": "Copy file to target only if this command exits with status '0'",
+          "name": "onlyif"
+        },
+        {
+          "doc": "Sort the built file. This tries to sort in a human fashion with \n          1 < 2 < 10 < 20 < a, etc..  sort. Note that this will need to read\n          the entire file into memory\n\n          Example Sort:\n\n          ['a','1','b','10','2','20','Z','A']\n\n          translates to\n\n          ['1','2','10','20','a','A','b','Z']\n\n          Note: If you use a file delimiter with this, it *will not* be sorted!  Valid values are `true`, `false`.",
+          "name": "sort"
+        },
+        {
+          "doc": "Never output more than one blank line  Valid values are `true`, `false`.",
+          "name": "squeeze_blank"
+        },
+        {
+          "doc": "Specify the parent to this build step. Only needed for multiple\n          staged builds. Can be an array.",
+          "name": "parent_build"
+        },
+        {
+          "doc": "Suppress errors when no fragments exist for build  Valid values are `true`, `false`.",
+          "name": "quiet"
+        },
+        {
+          "doc": "Only print unique lines to the output file. Sort takes precedence.\n          This does not affect file delimiters.\n\n          true: Uses Ruby's Array.uniq function. It will remove all duplicates\n          regardless  of where they are in the file.\n \n          uniq: Acts like the uniq command found in GNU coreutils and only\n          removes consecutive duplicates.  Valid values are `true`, `false`, `uniq`.",
+          "name": "unique"
+        },
+        {
+          "doc": "Array containing ordering info for build",
+          "name": "order"
+        }
+      ],
+      "doc": "Build file from fragments",
+      "properties": [
+        {
+          "doc": "Fully qualified path to copy output file to",
+          "name": "target"
+        }
+      ],
+      "name": "concat_build"
+    },
+    {
+      "providers": [
+        {
+          "doc": "concat_fragment provider",
+          "name": "concat_fragment"
+        }
+      ],
+      "parameters": [
+        {
+          "doc": "",
+          "name": "name"
+        },
+        {
+          "doc": "Ignore me, I'm a convienience stub",
+          "name": "frag_group"
+        },
+        {
+          "doc": "Ignore me, I'm a convienience stub",
+          "name": "frag_name"
+        }
+      ],
+      "doc": "Create a concat fragment. If you do not create an associated\n          concat_build object, then one will be created for you and the\n          defaults will be used.",
+      "properties": [
+        {
+          "doc": "",
+          "name": "content"
+        }
+      ],
+      "name": "concat_fragment"
+    }
+  ],
+  "license": "Apache 2.0",
+  "source": "git://github.com/theforeman/puppet-concat",
+  "project_page": "http://github.com/theforeman/foreman-installer",
+  "description": "Module that provides a native type for performing multi-part file concatenation.",
+  "version": "1.2.0",
+  "summary": "Puppet Concat Module",
+  "name": "theforeman-concat_native",
+  "author": "Onyx Point, Inc.",
+  "dependencies": [
+
+  ]
+}
