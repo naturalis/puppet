@@ -1,0 +1,37 @@
+{
+  "checksums": {
+    "templates/dhcpd.pool.erb": "c4a1125ccfa5196c85438134d5291791",
+    "files/dhcpd.pools": "461545f7d46e5dc0e1e6f9bdfad32d1d",
+    "Modulefile": "2ff1f27a44474a3feee3e84b1a90ed43",
+    "templates/debian/default_isc-dhcp-server": "1b0f29f88705fa0085038a64e1842c31",
+    "templates/dhcpd.host.erb": "7a4398fc127adf90a7a98433a467a400",
+    "manifests/init.pp": "9daecd8ddda8b6fe7069d1366102b320",
+    "templates/redhat/sysconfig-dhcpd": "066e3ff31750309e30ddd3199ad5798f",
+    "LICENSE": "332573ff0b2ee08f026fbbc4b266ff54",
+    "templates/dhcpd.conf.erb": "d7862ac23c2677aec7aaf3ee38b7f62a",
+    "manifests/disable.pp": "bd43bc6b7faef228846c9e929dbc44a9",
+    "manifests/params.pp": "2d913c202e2991d21a1e0415db76fe3b",
+    "manifests/host.pp": "f1c9b42be3401193af84e7e3c05e0d43",
+    "README.md": "dc7e29f9a0b1afb65ed03ed138bfc1df",
+    "tests/init.pp": "0fda61249aa9c6fd1e60da133f3b278a",
+    "manifests/pool.pp": "7837935917480b2676bd028d9df0e155",
+    "files/dhcpd.hosts": "f3be005eb6404e8e97be43fd63720af4"
+  },
+  "types": [
+
+  ],
+  "license": "Apache License Version 2.0",
+  "source": "git://github.com/theforeman/puppet-dhcp",
+  "project_page": "http://github.com/theforeman/foreman-installer",
+  "description": "A Puppet module to deploy and manage the ISC DHCP server.",
+  "version": "1.2.0",
+  "summary": "Manage the ISC DHCP Daemon",
+  "name": "theforeman-dhcp",
+  "author": "ZLeslie, theforeman",
+  "dependencies": [
+    {
+      "version_requirement": ">= 1.2.0",
+      "name": "theforeman/concat_native"
+    }
+  ]
+}

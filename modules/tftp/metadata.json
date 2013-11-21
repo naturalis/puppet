@@ -1,0 +1,30 @@
+{
+  "checksums": {
+    "manifests/service.pp": "837a7d96dd8ae53e04732f005ca9e9fb",
+    "templates/tftpd.map": "e25509e3ae895f72cf1671b614890797",
+    "templates/xinetd-tftp": "cd1921c61b9a13cff97835b582a3dc66",
+    "LICENSE": "9eef91148a9b14ec7f9df333daebc746",
+    "manifests/params.pp": "668820992f8c66c649484737cd2e4e75",
+    "manifests/init.pp": "c8a647010ac1bd548627033b33f18403",
+    "README.md": "5f0b01638ba97ca3964305ad0c0e154e",
+    "manifests/config.pp": "a931a2b4f8b6caed34d3cac8f26e1660",
+    "manifests/install.pp": "8666bb6247ea2476ce0601ede2c9fced",
+    "Modulefile": "a5f4c4a0777fa09f08d416de8325a58d"
+  },
+  "types": [
+
+  ],
+  "license": "GPLv3+",
+  "source": "git://github.com/theforeman/puppet-tftp",
+  "project_page": "http://github.com/theforeman/foreman-installer",
+  "description": "Module for configuring a TFTP server",
+  "version": "1.2.0",
+  "summary": "TFTP server configuration",
+  "name": "theforeman-tftp",
+  "author": "theforeman",
+  "dependencies": [
+    {
+      "name": "puppetlabs/xinetd"
+    }
+  ]
+}

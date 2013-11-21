@@ -1,0 +1,37 @@
+{
+  "checksums": {
+    "templates/named.zone.erb": "ef54d02d4bdf6c29b8be9fffc5367bfe",
+    "templates/options.conf.erb": "a0d940f2d3696336a85d967d5660737e",
+    "templates/named.conf.erb": "ebbd7868ec2d46b4ee5af60b9ecad461",
+    "manifests/init.pp": "02a4f61d4e4dc77175a7d37125eab872",
+    "lib/puppet/parser/functions/date.rb": "8c1b8ad6e4a0f77ee816000e4d096372",
+    "manifests/zone.pp": "4e7210cb52ef647a50322296368e868e",
+    "manifests/params.pp": "51db89065fd1e41322de0fa7c2531655",
+    "files/named.ca": "9d625703bac6d28c3bf08cb1b483498b",
+    "LICENSE": "332573ff0b2ee08f026fbbc4b266ff54",
+    "lib/puppet/parser/functions/get_in_addr_arpa.rb": "b5d2416fc26683bb83ef652576467e96",
+    "templates/zone.header.erb": "73142688ac9650b6d8b1090d72265d2a",
+    "files/localhost.zone": "5a22fba6990ce8c4aac56dd76407bade",
+    "files/named.conf.default-zones": "3acb996772b7994bd184edd75fc01642",
+    "Modulefile": "3eb82cebd41e49e32de35d1ed2669be0",
+    "README.md": "9699e80ef61dd08f3e9d61735ac70d45",
+    "files/named.local": "3780bb3e7a413674fdb1b726ce599753"
+  },
+  "types": [
+
+  ],
+  "license": "Apache License Version 2.0",
+  "source": "git://github.com/theforeman/puppet-dns",
+  "project_page": "http://github.com/theforeman/foreman-installer",
+  "description": "Module for configuring the ISC BIND server for Foreman",
+  "version": "1.2.0",
+  "summary": "Manage the ISC BIND daemon",
+  "name": "theforeman-dns",
+  "author": "ZLeslie, theforeman",
+  "dependencies": [
+    {
+      "version_requirement": ">= 1.2.0",
+      "name": "theforeman/concat_native"
+    }
+  ]
+}
