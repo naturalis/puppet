@@ -30,7 +30,7 @@ exec { 'enable_puppet':
   command => 'sed -i "s/START=no/START=yes/g" /etc/default/puppet',
   unless  => 'grep "START=yes" /etc/default/puppet',
   notify  => Service[ 'puppet' ],
-  require => Exec[ 'gen_puppet_keys' ],
+  require => [ Exec[ 'gen_puppet_keys' ], Class[ 'Puppetdb::Master::Puppetdb_conf' ] ],
 }
 
 package { 'foreman-compute':
