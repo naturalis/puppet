@@ -6,6 +6,7 @@
 #   [*backupuser*]     - The name of the mysql backup user.
 #   [*backuppassword*] - The password of the mysql backup user.
 #   [*backupdir*]      - The target directory of the mysqldump.
+#   [*restoredir*]      - The target directory of the mysqldump.
 #   [*backupcompress*] - Boolean to compress backup with bzip2.
 #   [*backuphour*]     - Hour to backup
 #   [*backupminute*]   - Minute to backup
@@ -28,7 +29,8 @@
 class mysql::backup (
   $backupuser = undef,
   $backuppassword = undef,
-  $backupdir = unfdef,
+  $backupdir = undef,
+  $restoredir = "/tmp/restore",
   $backupcompress = true,
   $backuphour = 4,
   $backupminute = 5,
