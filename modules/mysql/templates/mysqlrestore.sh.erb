@@ -10,17 +10,17 @@
 #
 ##### START CONFIG ###################################################
 
-#USER=<%= @backupuser %>
-#PASS=<%= @backuppassword %>
-USER=root
+USER=<%= @backupuser %>
+PASS=<%= @backuppassword %>
+#USER=root
 
-DIR=/tmp/restore
+DIR=<%= @restoredir %>
 
 ##### STOP CONFIG ####################################################
 PATH=/usr/bin:/usr/sbin:/bin:/sbin
 
-#<% if @backupcompress %>bunzip2 <% end %>< ${DIR}/mysql_backup.sql<% if @backupcompress %>.bz2<% end  %> | mysql -u${USER} -p${PASS}
-<% if @backupcompress %>bunzip2 <% end %>< ${DIR}/mysql_backup.sql<% if @backupcompress %>.bz2<% end  %> | mysql -u${USER} 
+<% if @backupcompress %>bunzip2 <% end %>< ${DIR}/mysql_backup.sql<% if @backupcompress %>.bz2<% end  %> | mysql -u${USER} -p${PASS}
+#<% if @backupcompress %>bunzip2 <% end %>< ${DIR}/mysql_backup.sql<% if @backupcompress %>.bz2<% end  %> | mysql -u${USER} 
 
 
 

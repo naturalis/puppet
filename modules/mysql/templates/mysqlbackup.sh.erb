@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # MySQL Backup Script
 #  Dumps mysql databases to a file for another backup tool to pick up.
@@ -17,8 +17,12 @@ DIR=<%= @backupdir %>
 ##### STOP CONFIG ####################################################
 PATH=/usr/bin:/usr/sbin:/bin:/sbin
 
-mysqldump -u${USER} -p${PASS} --opt --flush-logs --single-transaction \
- --all-databases <% if @backupcompress %>| bzcat -zc <% end %>> ${DIR}/mysql_backup.sql<% if @backupcompress %>.bz2<% end  %>
+
+MYSQL=$(mysql -N -u${USER} -p${PASS} <<<"SHOW DATABASES" | grep -v mysql | grep -v information_schema | grep -v test | tr "\n" " ")
+mysqldump -u${USER} -p${PASS} --databases  --opt --flush-logs --single-transaction --skip-lock-tables ${MYSQL} <% if @backupcompress %>| bzcat -zc <% end %>> ${DIR}/mysql_backup.sql<% if @backupcompress %>.bz2<% end  %>
+
+
+
 
 
 
