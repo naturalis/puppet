@@ -14,15 +14,11 @@ define cephdeploy::osd(
 #    require => exec['copy key'],
 #  }
 
-  package { 'sysfsutils':
-    ensure => present,
-  }
-
   file {"log $disk":
     owner => $user,
     group => $user,
     mode  => 0777,
-    path  => "/home/$user/bootstrap/ceph.log",
+    path  => "/home/$user/bootstrap/ceph_$disk.log",
     require => Exec["install ceph"],
   }
 

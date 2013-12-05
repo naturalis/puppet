@@ -59,7 +59,7 @@ then
   wget http://apt.puppetlabs.com/puppetlabs-release-stable.deb
   dpkg -i puppetlabs-release-stable.deb
   apt-get --yes --quiet update
-  apt-get --yes -o Dpkg::Options::="--force-confold" --quiet install git puppet-common ruby1.9.1
+  apt-get --yes -o Dpkg::Options::="--force-confold" --quiet install git puppet-common ruby1.9.1 libaugeas-ruby
 fi
 
 # centos

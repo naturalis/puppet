@@ -15,6 +15,9 @@ class role_cephdeploy::osd (
   $ceph_cluster_network = '192.168.20.0/24',
   $ceph_mondisks = [ 'sdc', 'sdd' ],
 ){
+  package { 'sysfsutils':
+    ensure => present,
+  }
 
   class { 'cephdeploy':
     user     => $ceph_deploy_user,
