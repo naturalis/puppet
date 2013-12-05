@@ -99,6 +99,7 @@ class cephdeploy(
     owner   => $user,
     group   => $user,
     path    => "/home/$user/bootstrap/ceph.conf",
+    require => User[$user],
   }
 
   concat::fragment { 'ceph':

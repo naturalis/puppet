@@ -13,19 +13,15 @@ class role_cephdeploy::osd (
   $ceph_public_interface = 'eth0',
   $ceph_public_network = '192.168.20.0/24',
   $ceph_cluster_network = '192.168.20.0/24',
+  $ceph_mondisks = [ 'sdc', 'sdd' ],
 ){
+
   class { 'cephdeploy':
     user     => $ceph_deploy_user,
     pass     => $ceph_deploy_password,
   }
 
-#  class { 'cephdeploy::baseconfig':
-#    user     => $ceph_deploy_user,
-#    pass     => $ceph_deploy_password,
-#    require     => Class[ 'cephdeploy' ],
-#  }
-
-  cephdeploy::osd { 'sdb':
+  cephdeploy::osd { $ceph_mondisks:
     user             => $ceph_deploy_user,
     ceph_primary_mon => $primary_mon,
     setup_pools      => false,
