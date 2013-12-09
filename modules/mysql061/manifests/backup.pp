@@ -1,0 +1,69 @@
+# Class: mysql061::backup
+#
+# This module handles ...
+#
+# Parameters:
+#   [*backupuser*]     - The name of the mysql backup user.
+#   [*backuppassword*] - The password of the mysql backup user.
+#   [*backupdir*]      - The target directory of the mysqldump.
+#   [*restoredir*]      - The target directory of the mysqldump.
+#   [*backupcompress*] - Boolean to compress backup with bzip2.
+#   [*backuphour*]     - Hour to backup
+#   [*backupminute*]   - Minute to backup
+#
+# Actions:
+#   GRANT SELECT, RELOAD, LOCK TABLES ON *.* TO 'user'@'localhost'
+#    IDENTIFIED BY 'password';
+#
+# Requires:
+#   Class['mysql061::config']
+#
+# Sample Usage:
+#   class { 'mysql061::backup':
+#     backupuser     => 'myuser',
+#     backuppassword => 'mypassword',
+#     backupdir      => '/tmp/backups',
+#     backupcompress => true,
+#   }
+#
+class mysql061::backup (
+  $backupuser = undef,
+  $backuppassword = undef,
+  $backupdir = undef,
+  $restoredir = "/tmp/restore",
+  $backupcompress = true,
+  $backuphour = 4,
+  $backupminute = 5,
+  $ensure = 'present'
+) {
+
+  database_user { "${backupuser}@localhost":
+    ensure        => $ensure,
+    password_hash => mysql_password($backuppassword),
+    provider      => 'mysql',
+    require       => Class['mysql061::config'],
+  }
+
+  database_grant { "${backupuser}@localhost":
+    privileges => ['Select_priv','Reload_priv','Lock_tables_priv','Show_view_priv'],
+    require    => Database_user["${backupuser}@localhost"],
+  }
+
+  file { 'mysqlbackup.sh':
+    ensure  => $ensure,
+    path    => '/usr/local/sbin/mysqlbackup.sh',
+    mode    => '0700',
+    owner   => 'root',
+    group   => 'root',
+    content => template('mysql061/mysqlbackup.sh.erb'),
+  }
+
+  file { 'mysqlrestore.sh':
+    ensure  => $ensure,
+    path    => '/usr/local/sbin/mysqlrestore.sh',
+    mode    => '0700',
+    owner   => 'root',
+    group   => 'root',
+    content => template('mysql061/mysqlrestore.sh.erb'),
+  }
+}

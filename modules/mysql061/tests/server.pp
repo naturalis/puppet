@@ -1,0 +1,3 @@
+class { 'mysql061::server':
+  config_hash => { 'root_password' => 'password', },
+}
