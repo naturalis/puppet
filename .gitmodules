@@ -46,3 +46,6 @@
 [submodule "modules/mysql"]
 	path = modules/mysql
 	url = https://github.com/puppetlabs/puppetlabs-mysql.git
+[submodule "modules/nsr"]
+	path = modules/nsr
+	url = https://github.com/naturalis/puppet-nsr
