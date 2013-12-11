@@ -49,3 +49,6 @@
 [submodule "modules/nsr"]
 	path = modules/nsr
 	url = https://github.com/naturalis/puppet-nsr
+[submodule "modules/bioportal"]
+	path = modules/bioportal
+	url = https://github.com/naturalis/puppet-bioportal
