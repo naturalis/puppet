@@ -52,3 +52,9 @@
 [submodule "modules/bioportal"]
 	path = modules/bioportal
 	url = https://github.com/naturalis/puppet-bioportal
+[submodule "modules/postgresql"]
+	path = modules/postgresql
+	url = https://github.com/puppetlabs/puppetlabs-postgresql.git
+[submodule "modules/php"]
+	path = modules/php
+	url = https://github.com/thias/puppet-php.git
