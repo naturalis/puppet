@@ -130,8 +130,8 @@ baseusers:
       type: "ssh-rsa"
       comment: "p.gomersbach@rely.nl"
       key: "AAAAB3NzaC1yc2EAAAABJQAAAIBud+H5vR4fK84lolkbbwl+ZY8+ic0Mf3jxzDrYJpJd+h9EIjA/r1NqdjEtbH5GfP8xZqXIGVFG1pqPr9pNupf7YAz4tf7I+GK1v5n8FTA/PKufSHrHRzhIeSud3OlV7A2Ak/mCvYmfwUPntw3pq32yYx9AIeqzV64nny5TvJc8Qw=="
-  foppe.pieterse:
-    comment: "Foppe Pieterse"
+  foppe.pieters:
+    comment: "Foppe Pieters"
     shell: "/bin/zsh"
     ssh_key:
       type: "ssh-rsa"
