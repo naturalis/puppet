@@ -28,6 +28,7 @@ Puppet::Type.newtype(:firewall) do
     installed.
   EOS
 
+  feature :hop_limiting, "Hop limiting features."
   feature :rate_limiting, "Rate limiting features."
   feature :snat, "Source NATing"
   feature :dnat, "Destination NATing"
@@ -42,6 +43,14 @@ Puppet::Type.newtype(:firewall) do
   feature :tcp_flags, "The ability to match on particular TCP flag settings"
   feature :pkttype, "Match a packet type"
   feature :socket, "Match open sockets"
+  feature :isfragment, "Match fragments"
+  feature :address_type, "The ability match on source or destination address type"
+  feature :iprange, "The ability match on source or destination IP range "
+  feature :ishasmorefrags, "Match a non-last fragment of a fragmented ipv6 packet - might be first"
+  feature :islastfrag, "Match the last fragment of an ipv6 packet"
+  feature :isfirstfrag, "Match the first fragment of a fragmented ipv6 packet"
+  feature :ipsec_policy, "Match IPsec policy"
+  feature :ipsec_dir, "Match IPsec policy direction"
 
   # provider specific features
   feature :iptables, "The provider provides iptables features."
@@ -100,12 +109,33 @@ Puppet::Type.newtype(:firewall) do
 
           source => '192.168.2.0/24'
 
+      You can also negate a mask by putting ! in front. For example:
+
+          source => '! 192.168.2.0/24'
+
       The source can also be an IPv6 address if your provider supports it.
     EOS
 
     munge do |value|
-      @resource.host_to_ip(value)
+      begin
+        @resource.host_to_mask(value)
+      rescue Exception => e
+        self.fail("host_to_ip failed for #{value}, exception #{e}")
+      end
     end
+  end
+
+  # Source IP range
+  newproperty(:src_range, :required_features => :iprange) do
+    desc <<-EOS
+      The source IP range. For example:
+
+          src_range => '192.168.1.1-192.168.1.10'
+
+      The source IP range is must in 'IP1-IP2' format.
+    EOS
+
+    newvalues(/^((25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)\.){3}(25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)-((25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)\.){3}(25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)/)
   end
 
   newproperty(:destination) do
@@ -114,12 +144,33 @@ Puppet::Type.newtype(:firewall) do
 
           destination => '192.168.1.0/24'
 
+      You can also negate a mask by putting ! in front. For example:
+
+          destination  => '! 192.168.2.0/24'
+
       The destination can also be an IPv6 address if your provider supports it.
     EOS
 
     munge do |value|
-      @resource.host_to_ip(value)
+      begin
+        @resource.host_to_mask(value)
+      rescue Exception => e
+        self.fail("host_to_ip failed for #{value}, exception #{e}")
+      end
     end
+  end
+
+  # Destination IP range
+  newproperty(:dst_range, :required_features => :iprange) do
+    desc <<-EOS
+      The destination IP range. For example:
+
+          dst_range => '192.168.1.1-192.168.1.10'
+
+      The destination IP range is must in 'IP1-IP2' format.
+    EOS
+
+    newvalues(/^((25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)\.){3}(25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)-((25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)\.){3}(25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)/)
   end
 
   newproperty(:sport, :array_matching => :all) do
@@ -210,6 +261,58 @@ Puppet::Type.newtype(:firewall) do
       value = [value] unless value.is_a?(Array)
       value.join(',')
     end
+  end
+
+  newproperty(:dst_type, :required_features => :address_type) do
+    desc <<-EOS
+      The destination address type. For example:
+
+          dst_type => 'LOCAL'
+
+      Can be one of:
+
+      * UNSPEC - an unspecified address
+      * UNICAST - a unicast address
+      * LOCAL - a local address
+      * BROADCAST - a broadcast address
+      * ANYCAST - an anycast packet
+      * MULTICAST - a multicast address
+      * BLACKHOLE - a blackhole address
+      * UNREACHABLE - an unreachable address
+      * PROHIBIT - a prohibited address
+      * THROW - undocumented
+      * NAT - undocumented
+      * XRESOLVE - undocumented
+    EOS
+
+    newvalues(:UNSPEC, :UNICAST, :LOCAL, :BROADCAST, :ANYCAST, :MULTICAST,
+              :BLACKHOLE, :UNREACHABLE, :PROHIBIT, :THROW, :NAT, :XRESOLVE)
+  end
+
+  newproperty(:src_type, :required_features => :address_type) do
+    desc <<-EOS
+      The source address type. For example:
+
+          src_type => 'LOCAL'
+
+      Can be one of:
+
+      * UNSPEC - an unspecified address
+      * UNICAST - a unicast address
+      * LOCAL - a local address
+      * BROADCAST - a broadcast address
+      * ANYCAST - an anycast packet
+      * MULTICAST - a multicast address
+      * BLACKHOLE - a blackhole address
+      * UNREACHABLE - an unreachable address
+      * PROHIBIT - a prohibited address
+      * THROW - undocumented
+      * NAT - undocumented
+      * XRESOLVE - undocumented
+    EOS
+
+    newvalues(:UNSPEC, :UNICAST, :LOCAL, :BROADCAST, :ANYCAST, :MULTICAST,
+              :BLACKHOLE, :UNREACHABLE, :PROHIBIT, :THROW, :NAT, :XRESOLVE)
   end
 
   newproperty(:proto) do
@@ -460,6 +563,46 @@ Puppet::Type.newtype(:firewall) do
     end
   end
 
+  newproperty(:ctstate, :array_matching => :all, :required_features =>
+    :state_match) do
+
+    desc <<-EOS
+      Matches a packet based on its state in the firewall stateful inspection
+      table, using the conntrack module. Values can be:
+
+      * INVALID
+      * ESTABLISHED
+      * NEW
+      * RELATED
+    EOS
+
+    newvalues(:INVALID,:ESTABLISHED,:NEW,:RELATED)
+
+    # States should always be sorted. This normalizes the resource states to
+    # keep it consistent with the sorted result from iptables-save.
+    def should=(values)
+      @should = super(values).sort_by {|sym| sym.to_s}
+    end
+
+    def is_to_s(value)
+      should_to_s(value)
+    end
+
+    def should_to_s(value)
+      value = [value] unless value.is_a?(Array)
+      value.join(',')
+    end
+  end
+
+
+  # Hop limiting properties
+  newproperty(:hop_limit, :required_features => :hop_limiting) do
+    desc <<-EOS
+      Hop limiting value for matched packets.
+    EOS
+    newvalue(/^\d+$/)
+  end
+
   # Rate limiting properties
   newproperty(:limit, :required_features => :rate_limiting) do
     desc <<-EOS
@@ -543,6 +686,14 @@ Puppet::Type.newtype(:firewall) do
     newvalues(:unicast, :broadcast, :multicast)
   end
 
+  newproperty(:isfragment, :required_features => :isfragment) do
+    desc <<-EOS
+      Set to true to match tcp fragments (requires type to be set to tcp)
+    EOS
+
+    newvalues(:true, :false)
+  end
+
   newproperty(:socket, :required_features => :socket) do
     desc <<-EOS
       If true, matches if an open socket can be found by doing a coket lookup
@@ -550,6 +701,47 @@ Puppet::Type.newtype(:firewall) do
     EOS
 
     newvalues(:true, :false)
+  end
+
+  newproperty(:ishasmorefrags, :required_features => :ishasmorefrags) do
+    desc <<-EOS
+      If true, matches if the packet has it's 'more fragments' bit set. ipv6.
+    EOS
+
+    newvalues(:true, :false)
+  end
+
+  newproperty(:islastfrag, :required_features => :islastfrag) do
+    desc <<-EOS
+      If true, matches if the packet is the last fragment. ipv6.
+    EOS
+
+    newvalues(:true, :false)
+  end
+
+  newproperty(:isfirstfrag, :required_features => :isfirstfrag) do
+    desc <<-EOS
+      If true, matches if the packet is the first fragment. 
+      Sadly cannot be negated. ipv6.
+    EOS
+
+    newvalues(:true, :false)
+  end
+
+  newproperty(:ipsec_policy, :required_features => :ipsec_policy) do
+	  desc <<-EOS
+	  	 Sets the ipsec policy type
+	  EOS
+
+	  newvalues(:none, :ipsec)
+  end
+
+  newproperty(:ipsec_dir, :required_features => :ipsec_dir) do
+	  desc <<-EOS
+	  	 Sets the ipsec policy direction
+	  EOS
+
+	  newvalues(:in, :out)
   end
 
   newparam(:line) do
@@ -570,8 +762,9 @@ Puppet::Type.newtype(:firewall) do
     end
 
     unless protocol.nil?
+      table = value(:table)
       [value(:chain), value(:jump)].each do |chain|
-        reqs << "#{chain}:#{value(:table)}:#{protocol}" unless chain.nil?
+        reqs << "#{chain}:#{table}:#{protocol}" unless ( chain.nil? || (['INPUT', 'OUTPUT', 'FORWARD'].include?(chain) && table == :filter) )
       end
     end
 

@@ -116,6 +116,20 @@ module Puppet::Util::Firewall
     value.cidr
   end
 
+  # Takes an address mask and converts the host portion to CIDR notation.
+  #
+  # This takes into account you can negate a mask but follows all rules
+  # defined in host_to_ip for the host/address part.
+  #
+  def host_to_mask(value)
+    match = value.match /(!)\s?(.*)$/
+    return host_to_ip(value) unless match
+
+    cidr = host_to_ip(match[2])
+    return nil if cidr == nil
+    "#{match[1]} #{cidr}"
+  end
+
   # Validates the argument is int or hex, and returns valid hex
   # conversion of the value or nil otherwise.
   def to_hex32(value)
@@ -136,7 +150,7 @@ module Puppet::Util::Firewall
     # Basic normalisation for older Facter
     os_key = Facter.value(:osfamily)
     os_key ||= case Facter.value(:operatingsystem)
-    when 'RedHat', 'CentOS', 'Fedora'
+    when 'RedHat', 'CentOS', 'Fedora', 'Scientific', 'SL', 'SLC', 'Ascendos', 'CloudLinux', 'PSBM', 'OracleLinux', 'OVS', 'OEL', 'Amazon', 'XenServer'
       'RedHat'
     when 'Debian', 'Ubuntu'
       'Debian'
@@ -152,6 +166,11 @@ module Puppet::Util::Firewall
       end
     end
 
+    # Fedora 15 and newer use systemd for to persist iptable rules
+    if os_key == 'RedHat' && Facter.value(:operatingsystem) == 'Fedora' && Facter.value(:operatingsystemrelease).to_i >= 15
+      os_key = 'Fedora'
+    end
+
     cmd = case os_key.to_sym
     when :RedHat
       case proto.to_sym
@@ -159,6 +178,13 @@ module Puppet::Util::Firewall
         %w{/sbin/service iptables save}
       when :IPv6
         %w{/sbin/service ip6tables save}
+      end
+    when :Fedora
+      case proto.to_sym
+      when :IPv4
+        %w{/usr/libexec/iptables.init save}
+      when :IPv6
+        %w{/usr/libexec/ip6tables.init save}
       end
     when :Debian
       case proto.to_sym
@@ -169,6 +195,13 @@ module Puppet::Util::Firewall
       case proto.to_sym
       when :IPv4
         ["/bin/sh", "-c", "/sbin/iptables-save > /etc/iptables/rules"]
+      end
+    when :Archlinux
+      case proto.to_sym
+      when :IPv4
+        ["/bin/sh", "-c", "/usr/sbin/iptables-save > /etc/iptables/iptables.rules"]
+      when :IPv6
+        ["/bin/sh", "-c", "/usr/sbin/ip6tables-save > /etc/iptables/ip6tables.rules"]
       end
     end
 
