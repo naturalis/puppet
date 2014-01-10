@@ -1,5 +1,6 @@
 define duplicity(
-  $directory,
+  $directory = undef,
+  $directories = undef,
   $bucket = undef,
   $dest_id = undef,
   $dest_key = undef,
@@ -82,6 +83,14 @@ define duplicity(
 
   if !$_bucket {
     fail('You need to define a container/bucket name!')
+  }
+ 
+  # convert directory to array
+  if !$directories {
+    if !$directory {
+      fail('either string $directory or array $directories have to be set for a working backup')
+    }
+    $directories = ['${directory}']
   }
 
   $_target_url = $_cloud ? {
