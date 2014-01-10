@@ -42,11 +42,44 @@ class { 'puppetdb::master::config':
   require => Exec[ 'gen_puppet_keys' ],
 }
 
+exec { 'disable apache decode':
+  command => 'a2dismod decode',
+  require => Class[ 'foreman' ],
+}
+
+
 class { 'puppetdb':
   ssl_listen_address => '0.0.0.0',
   listen_address     => '0.0.0.0',
   require            => Class[ 'puppetdb::master::config' ],
   notify             => Service[ 'puppet' ],
+}
+
+firewall { "000 accept all icmp requests":
+  proto => "icmp",
+  action => "accept",
+}
+
+firewall { '100 allow ssh access':
+  port => [22],
+  proto => tcp,
+  action => accept,
+}
+
+firewall { '200 allow http and https access':
+  port => [80, 443],
+  proto => tcp,
+  action => accept,
+}
+
+firewall { '210 allow clients to puppetmaster access':
+  port => [8140],
+  proto => tcp,
+  action => accept,
+}
+
+resources { 'firewall':
+  purge => true
 }
 
 
