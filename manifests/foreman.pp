@@ -55,31 +55,40 @@ class { 'puppetdb':
   notify             => Service[ 'puppet' ],
 }
 
+package { 'iptables-persistent':
+  ensure => present,
+}
+
 firewall { "000 accept all icmp requests":
   proto => "icmp",
   action => "accept",
+  require => Package['iptables-persistent']
 }
 
 firewall { '100 allow ssh access':
   port => [22],
   proto => tcp,
   action => accept,
+  require => Package['iptables-persistent']
 }
 
 firewall { '200 allow http and https access':
   port => [80, 443],
   proto => tcp,
   action => accept,
+  require => Package['iptables-persistent']
 }
 
 firewall { '210 allow clients to puppetmaster access':
   port => [8140],
   proto => tcp,
   action => accept,
+  require => Package['iptables-persistent']
 }
 
 resources { 'firewall':
-  purge => true
+  purge => true,
+  require => Package['iptables-persistent']
 }
 
 
