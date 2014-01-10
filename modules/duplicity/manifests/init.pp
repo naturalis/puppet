@@ -90,7 +90,9 @@ define duplicity(
     if !$directory {
       fail('either string $directory or array $directories have to be set for a working backup')
     }
-    $directories = ['${directory}']
+    $_directories = ['${directory}']
+  } else {
+    $_directories = $directories
   }
 
   $_target_url = $_cloud ? {
