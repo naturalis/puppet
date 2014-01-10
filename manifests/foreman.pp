@@ -43,7 +43,7 @@ class { 'puppetdb::master::config':
 }
 
 exec { 'disable apache decode':
-  command => 'a2dismod decode',
+  command => 'a2dismod deflate',
   require => Class[ 'foreman' ],
 }
 
