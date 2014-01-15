@@ -1,17 +1,18 @@
 define duplicity(
-  $directory = undef,
-  $directories = undef,
-  $bucket = undef,
-  $dest_id = undef,
-  $dest_key = undef,
-  $folder = undef,
-  $cloud = undef,
-  $pubkey_id = undef,
-  $hour = undef,
-  $minute = undef,
-  $full_if_older_than = undef,
-  $pre_command = undef,
-  $remove_older_than = undef
+  $directory             = undef,
+  $directories           = undef,
+  $bucket                = undef,
+  $dest_id               = undef,
+  $dest_key              = undef,
+  $folder                = undef,
+  $cloud                 = undef,
+  $pubkey_id             = undef,
+  $hour                  = undef,
+  $minute                = undef,
+  $full_if_older_than    = undef,
+  $pre_command           = undef,
+  $remove_older_than     = undef,
+  $allow_source_mismatch = false,
 ) {
 
   include duplicity::params
@@ -107,6 +108,10 @@ define duplicity(
 
   if (!$_dest_id or !$_dest_key) {
     fail("You need to set all of your key variables: dest_id, dest_key")
+  }
+
+  if $allow_source_mismatch {
+    $_allow_source_mismatch = ' --allow-source-mismatch '
   }
 
   $environment = $_cloud ? {
