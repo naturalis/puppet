@@ -34,7 +34,7 @@ d-i base-installer/kernel/image string linux-generic
 
 d-i passwd/root-login boolean true
 d-i passwd/make-user boolean false
-d-i passwd/root-password-crypted password $1$3KOo0Xcs$k6SMBqFpYw.xVM2Y9b1XX0
+d-i passwd/root-password-crypted password $1$dIXiMFnp$PZc6oqGWld2ylr5Pxy2lr0
 
 d-i apt-setup/restricted boolean true
 d-i apt-setup/universe boolean true

@@ -42,6 +42,10 @@ logdir = /var/log/puppet
 rundir = /var/run/puppet
 ssldir = /var/lib/puppet/ssl
 
+# Allow services in the 'puppet' group to access key (Foreman + proxy)
+privatekeydir = $ssldir/private_keys { group = service }
+hostprivkey = $privatekeydir/$certname.pem { mode = 640 }
+
 [agent]
 pluginsync      = true
 report          = true
