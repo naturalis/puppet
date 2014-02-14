@@ -2,11 +2,11 @@
 apt-get install genisoimage
 cd /tmp
 mkdir original-iso custom-iso
-if [ ! -f /tmp/ubuntu-12.04.3-server-amd64.iso ]; then
+if [ ! -f /tmp/ubuntu-12.04.4-server-amd64.iso ]; then
     echo "Iso image not found, downloading"
-    wget http://releases.ubuntu.com/12.04/ubuntu-12.04.3-server-amd64.iso
+    wget http://releases.ubuntu.com/12.04/ubuntu-12.04.4-server-amd64.iso
 fi
-mount -o loop ubuntu-12.04.3-server-amd64.iso ./original-iso
+mount -o loop ubuntu-12.04.4-server-amd64.iso ./original-iso
 cp -r ./original-iso/* ./custom-iso/
 cp -r ./original-iso/.disk/ ./custom-iso/
 wget https://raw.github.com/naturalis/puppet/master/private/scripts/preseed-default.seed -O ./custom-iso/preseed/seed.seed
@@ -25,7 +25,7 @@ append file=/cdrom/preseed/seed.seed initrd=/install/initrd.gz locale=en_US auto
 
 EOF
 
-mkisofs -R -J -l -b isolinux/isolinux.bin -no-emul-boot -boot-load-size 4 -boot-info-table -z -iso-level 4 -c isolinux/isolinux.cat -o ubuntu-12.04.3-custom-amd64.iso custom-iso/
+mkisofs -R -J -l -b isolinux/isolinux.bin -no-emul-boot -boot-load-size 4 -boot-info-table -z -iso-level 4 -c isolinux/isolinux.cat -o ubuntu-12.04.4-custom-amd64.iso custom-iso/
 rm -rf original-iso custom-iso
-echo "The custom iso image: /tmp/ubuntu-12.04.3-custom-amd64.iso"
+echo "The custom iso image: /tmp/ubuntu-12.04.4-custom-amd64.iso"
 cd -
