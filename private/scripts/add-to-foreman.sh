@@ -9,7 +9,16 @@
 #- Ubuntu 12.04
 #- Ubuntu 13.04
 #- CentOS 6
-hostname=$(hostname -f) 
+
+environment=1402production
+hostname=$(hostname -f)
+
+if [ "$hostname" = "" ]
+then
+  hostname=$(hostname)
+  echo "Can not resolve fqdn, please enter fqdn of host: (example: $hostname.internal.domain)"
+  read hostname
+fi
 
 if [ -f /usr/bin/dpkg ]
 then
@@ -59,6 +68,7 @@ server          = foreman.naturalis.nl
 EOF
 
 sed -i "s/^certname        = dummyhostname/certname        = $hostname/" /etc/puppet/puppet.conf
+sed -i "s/production/$environment/" /etc/puppet/puppet.conf
 
 if [ -f /bin/rpm ]
 then
@@ -73,4 +83,4 @@ fi
 /bin/touch /etc/puppet/namespaceauth.conf
 /usr/bin/puppet agent --enable
 /usr/bin/puppet agent --config /etc/puppet/puppet.conf
-/etc/init.d/puppet start
+/etc/init.d/puppet restart
