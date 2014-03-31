@@ -58,3 +58,6 @@
 [submodule "modules/php"]
 	path = modules/php
 	url = https://github.com/thias/puppet-php.git
+[submodule "modules/mrbayes"]
+	path = modules/mrbayes
+	url = https://github.com/naturalis/puppet-mrbayes
