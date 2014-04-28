@@ -1,0 +1,46 @@
+dierendeterminatie:
+  dierendeterminatie.cloud.naturalis.nl:
+    serveraliases: '*.cloud.naturalis.nl'
+    aliases: 
+      - alias: '/animalia'
+        path: '/var/www/dierendeterminatie/www'
+      - alias: '/boktorren'
+        path: '/var/www/dierendeterminatie/www'
+      - alias: '/rivierkreeften'
+        path: '/var/www/dierendeterminatie/www'
+      - alias: '/phyllonocrycter'
+        path: '/var/www/dierendeterminatie/www'
+      - alias: '/mecoptera'
+        path: '/var/www/dierendeterminatie/www'
+      - alias: '/kameelhalsvliegen'
+        path: '/var/www/dierendeterminatie/www'
+      - alias: '/botten'
+        path: '/var/www/dierendeterminatie/www'
+      - alias: '/index'
+        path: '/var/www/dierendeterminatie/www'
+    docroot: /var/www/dierendeterminatie
+    port: 80
+    ssl: no
+    serveradmin: aut@naturalis.nl
+dierendeterminatie::backmeup: false
+dierendeterminatie::bucket: 'dierendeterminatie'
+dierendeterminatie::autorestore: true
+dierendeterminatie::restoreversion: 'latest'
+dierendeterminatie::coderepo: 'svn://dev2.etibioinformatics.nl/linnaeus_ng/trunk'
+dierendeterminatie::repotype: 'svn'
+dierendeterminatie::coderoot: '/var/www/dierendeterminatie'
+dierendeterminatie::dest_id: 'AKIAILJ5BVC7Z332WFUQ'
+dierendeterminatie::dest_key: 'iN+Lzx6LdDS05mtpH6MX+fjBboqAICKbNGyRnBYb'
+dierendeterminatie::cloud: 's3'
+ipt-toolkit::backup: true
+ipt-toolkit::bucket: 'ipt-toolkit'
+ipt-toolkit::restore: true
+ipt-toolkit::restoreversion: 'latest'
+ipt-toolkit::coderepo: 'svn://dev2.etibioinformatics.nl/linnaeus_ng/trunk'
+ipt-toolkit::repotype: 'svn'
+ipt-toolkit::coderoot: '/var/www/ipt-toolkit'
+ipt-toolkit::dest_id: 'AKIAILJ5BVC7Z332WFUQ'
+ipt-toolkit::dest_key: 'iN+Lzx6LdDS05mtpH6MX+fjBboqAICKbNGyRnBYb'
+ipt-toolkit::cloud: 's3'
+
+

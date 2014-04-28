@@ -61,3 +61,6 @@
 [submodule "modules/mrbayes"]
 	path = modules/mrbayes
 	url = https://github.com/naturalis/puppet-mrbayes
+[submodule "modules/raxml"]
+	path = modules/raxml
+	url = https://github.com/naturalis/puppet-raxml.git
