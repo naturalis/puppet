@@ -64,3 +64,6 @@
 [submodule "modules/raxml"]
 	path = modules/raxml
 	url = https://github.com/naturalis/puppet-raxml.git
+[submodule "modules/garli"]
+	path = modules/garli
+	url = https://github.com/naturalis/puppet-garli.git
