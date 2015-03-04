@@ -84,7 +84,7 @@ mv /etc/puppet /etc/puppet.orig
 #
 # Fetch puppet configuration from public git repository.
 #
-env GIT_SSL_NO_VERIFY=true git clone --recursive $puppet_source /etc/puppet
+env GIT_SSL_NO_VERIFY=true git clone $puppet_source /etc/puppet
 
 #
 # Copy meta data to hiera backend directory
@@ -111,6 +111,7 @@ fi
 # Run puppet.
 #
 if [ -f /etc/puppet/manifests/$role.pp  ]; then
+  git clone https://github.com/naturalis/puppet-$role.git /etc/puppet/modules/$role
   puppet apply /etc/puppet/manifests/$role.pp
 else
   echo "/etc/puppet/manifests/$role.pp was not found!"
