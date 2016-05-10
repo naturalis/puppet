@@ -56,8 +56,10 @@ puppet_source=https://github.com/naturalis/puppet.git
 # Debian like
 if [ -f /usr/bin/dpkg ]
 then
-  wget http://apt.puppetlabs.com/puppetlabs-release-stable.deb
-  dpkg -i puppetlabs-release-stable.deb
+  # get Release codename
+  codename=`lsb_release -c -s`
+  wget http://apt.puppetlabs.com/puppetlabs-release-$codename.deb
+  dpkg -i puppetlabs-release-$codename.deb
   apt-get --yes --quiet update
   apt-get --yes -o Dpkg::Options::="--force-confold" --quiet install git puppet-common ruby1.9.1 libaugeas-ruby
 fi
