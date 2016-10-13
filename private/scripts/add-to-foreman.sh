@@ -5,12 +5,10 @@
 #oses:
 #- Debian 6.0
 #- Debian 7.0
-#- Ubuntu 10.04
-#- Ubuntu 12.04
-#- Ubuntu 13.04
+#- Ubuntu 14.04
 #- CentOS 6
 
-environment=1402production
+environment=production
 hostname=$(hostname -f)
 
 if [ "$hostname" = "" ]
@@ -22,10 +20,11 @@ fi
 
 if [ -f /usr/bin/dpkg ]
 then
-  wget http://apt.puppetlabs.com/puppetlabs-release-stable.deb
-  dpkg -i puppetlabs-release-stable.deb
+
+  wget http://apt.puppetlabs.com/puppetlabs-release-trusty.deb
+  dpkg -i puppetlabs-release-trusty.deb
   apt-get --yes --quiet update
-  apt-get --yes -o Dpkg::Options::="--force-confold" --quiet install git puppet-common puppet libaugeas-ruby
+  apt-get --yes -o Dpkg::Options::="--force-confold" --quiet install git facter puppet-common puppet libaugeas-ruby
 fi
 
 # centos
@@ -60,10 +59,10 @@ pluginsync      = true
 report          = true
 ignoreschedules = true
 daemon          = false
-ca_server       = foreman.naturalis.nl
+ca_server       = app-foreman-prod.naturalis.nl
 certname        = dummyhostname
 environment     = production
-server          = foreman.naturalis.nl
+server          = app-foreman-prod.naturalis.nl
 
 EOF
 
